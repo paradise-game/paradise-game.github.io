@@ -61,3 +61,16 @@ set :port, 4567
 helpers do
   require './lib/toc_data.rb'
 end
+
+# Using Live Reload
+activate :livereload
+
+# Global Variables
+set :schema, 'https://'
+config[:schema]
+
+set :host, 'api.paradise.game'
+config[:host]
+
+set :base_url, "#{config[:schema]}#{config[:host]}"
+config[:base_url]

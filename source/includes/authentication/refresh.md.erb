@@ -1,0 +1,61 @@
+## Refresh Token
+
+> Request
+
+```http
+POST /auth/refresh HTTP/1.1
+Host: <%= config[:host] %>
+X-Refresh-Token: {refresh_token}
+Authorization: Bearer {access_token}
+```
+
+```shell
+curl --location --request POST '<%= config[:base_url] %>/auth/refresh' \
+--header 'X-Refresh-Token: {refresh_token}' \
+--header 'Authorization: Bearer {access_token}'
+```
+
+```javascript
+const axios = require("axios");
+
+let config = {
+  method: "post",
+  maxBodyLength: Infinity,
+  url: "<%= config[:base_url] %>/auth/refresh",
+  headers: {
+    "X-Refresh-Token": "{refresh_token}",
+    Authorization: "Bearer {access_token}",
+  },
+};
+
+axios
+  .request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+> Response
+
+```json
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMzRlOGQxMDI4ZWY2N2NjYjM3YmZmMzgxNzBhZDk1MTpmMCIsImlhdCI6MTY4MzE2ODA0MywiZXhwIjoxNjgzMTY5OTAzfQ.0rtBUCNwAhMy5_oqkWlVw5I_k5_uT2zTIr4jm0oeLPQ"
+}
+```
+
+인증 토큰이 만료 될 경우(또는 그 전에) 토큰을 재발급 받아야 됩니다.
+
+`accessToken`은 보안상에 이유로 유효 시간이 짧습니다. 프로그램 명세에 따라 토큰이 만료되기 전 재발급을 통해 유효 시간을 유지하세요.
+
+### HTTP Request
+
+`POST /auth/refresh`
+
+### Response data
+
+| Parameter      | Type     | Description |
+| -------------- | -------- | ----------- |
+| accessToken | `string` | 인증 토큰 |

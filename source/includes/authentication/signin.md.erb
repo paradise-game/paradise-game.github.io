@@ -1,0 +1,105 @@
+## Sign in
+
+> Request
+
+```http
+POST /auth HTTP/1.1
+Host: <%= config[:host] %>
+Content-Type: application/json
+Content-Length: 58
+
+{
+    "phone": "01021004364",
+    "password": "Test@123"
+}
+```
+
+```shell
+curl --location '<%= config[:base_url] %>/auth' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "phone": "01021004364",
+    "password": "Test@123"
+}'
+```
+
+```javascript
+const axios = require("axios");
+
+let data = JSON.stringify({
+  phone: "01021004364",
+  password: "Test@123",
+});
+
+let config = {
+  method: "post",
+  maxBodyLength: Infinity,
+  url: "<%= config[:base_url] %>/auth",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  data: data,
+};
+
+axios
+  .request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+> Response
+
+```json
+{
+  "account": {
+    "balance": "0"
+  },
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMzRlOGQxMDI4ZWY2N2NjYjM3YmZmMzgxNzBhZDk1MTpmMCIsImlhdCI6MTY4MzE2ODA0MywiZXhwIjoxNjgzMTY5OTAzfQ.0rtBUCNwAhMy5_oqkWlVw5I_k5_uT2zTIr4jm0oeLPQ",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmYxMTNjYTRiNTliMDc4NmVmMzhhZWQ0NjhjOGU5MzpmNGM3YjZkZGJiN2FkZCIsImlhdCI6MTY4MzE2ODA0MywiZXhwIjoxNjgzMTY5OTAzfQ.n_DGj7snsxQVGD6P9aIFJmRvhuIrjjNudZPWa11-MBU"
+}
+```
+
+로그인은 국가 전화번호를 포함한 전화번호와 비밀번호를 통해 진행됩니다.
+
+로그인 성공 시 응답(Response)으로 계정 정보와 인증 토큰을 반환합니다. 이때 계정(Account)은 GNI 거래에 사용되며 현재 소유량을 포함합니다.
+
+### HTTP Request
+
+`POST /auth`
+
+### Response data
+
+| Parameter      | Type     | Description |
+| -------------- | -------- | ----------- |
+| account | `object` | 계정 정보 |
+| account.balance | `string` | 계정의 현재 GNI 소유량 |
+| accessToken | `string` | 인증 토큰 |
+| refreshToken | `string` | 재발급 토큰 |
+
+### Access Token
+
+API 요청의 대부분은 인증 토큰(access_token)을 요구합니다.
+
+`Authorization: bearer {access_token}`
+
+<aside class="notice">
+응답 JSON 데이터의 <code>accessToken</code>으로 변경하세요.
+</aside>
+
+### Refresh Token
+
+인증 토큰을 재발급할 때 사용됩니다. 인증 토큰의 유효시간은 보안상 이유로 매우 짧기 때문에, 상황에 따라 주기적으로 재발급을 필요로 합니다.
+
+<aside class="success">
+accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효 합니다.
+</aside>
+
+### Error code
+
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 401 | `INVALID_CREDENTIALS` | 잘못된 인증정보로 전화번호 또는 비밀번호가 틀림 |
