@@ -1,0 +1,118 @@
+<h2 id='sign-in'>Sign in</h2>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/auth</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">58</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01021004364"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test@123"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/auth'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data-raw</span> <span class="s1">'{
+    "phone": "01021004364",
+    "password": "Test@123"
+}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">"</span><span class="s2">axios</span><span class="dl">"</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="na">phone</span><span class="p">:</span> <span class="dl">"</span><span class="s2">01021004364</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">password</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test@123</span><span class="dl">"</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">post</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.paradise.game/auth</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
+    <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="na">data</span><span class="p">:</span> <span class="nx">data</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span>
+  <span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"accessToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlMzRlOGQxMDI4ZWY2N2NjYjM3YmZmMzgxNzBhZDk1MTpmMCIsImlhdCI6MTY4MzE2ODA0MywiZXhwIjoxNjgzMTY5OTAzfQ.0rtBUCNwAhMy5_oqkWlVw5I_k5_uT2zTIr4jm0oeLPQ"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"refreshToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmYxMTNjYTRiNTliMDc4NmVmMzhhZWQ0NjhjOGU5MzpmNGM3YjZkZGJiN2FkZCIsImlhdCI6MTY4MzE2ODA0MywiZXhwIjoxNjgzMTY5OTAzfQ.n_DGj7snsxQVGD6P9aIFJmRvhuIrjjNudZPWa11-MBU"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>로그인은 국가 전화번호를 포함한 전화번호와 비밀번호를 통해 진행됩니다.</p>
+
+<p>로그인 성공 시 응답(Response)으로 계정 정보와 인증 토큰을 반환합니다. 이때 계정(Account)은 GNI 거래에 사용되며 현재 소유량을 포함합니다.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /auth</code></p>
+<h3 id='response-data'>Response data</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account</td>
+<td><code>object</code></td>
+<td>계정 정보</td>
+</tr>
+<tr>
+<td>account.balance</td>
+<td><code>string</code></td>
+<td>계정의 현재 GNI 소유량</td>
+</tr>
+<tr>
+<td>accessToken</td>
+<td><code>string</code></td>
+<td>인증 토큰</td>
+</tr>
+<tr>
+<td>refreshToken</td>
+<td><code>string</code></td>
+<td>재발급 토큰</td>
+</tr>
+</tbody></table>
+<h3 id='access-token'>Access Token</h3>
+<p>API 요청의 대부분은 인증 토큰(access_token)을 요구합니다.</p>
+
+<p><code>Authorization: bearer {access_token}</code></p>
+
+<aside class="notice">
+응답 JSON 데이터의 <code>accessToken</code>으로 변경하세요.
+</aside>
+<h3 id='refresh-token'>Refresh Token</h3>
+<p>인증 토큰을 재발급할 때 사용됩니다. 인증 토큰의 유효시간은 보안상 이유로 매우 짧기 때문에, 상황에 따라 주기적으로 재발급을 필요로 합니다.</p>
+
+<aside class="success">
+accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효 합니다.
+</aside>
+<h3 id='error-code'>Error code</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td><code>INVALID_CREDENTIALS</code></td>
+<td>잘못된 인증정보로 전화번호 또는 비밀번호가 틀림</td>
+</tr>
+</tbody></table>
