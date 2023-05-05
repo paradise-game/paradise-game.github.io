@@ -59,32 +59,49 @@
 <p>로그인 성공 시 응답(Response)으로 계정 정보와 인증 토큰을 반환합니다. 이때 계정(Account)은 GNI 거래에 사용되며 현재 소유량을 포함합니다.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /auth</code></p>
-<h3 id='response-data'>Response data</h3>
+<h3 id='response-code'>Response Code</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+<h3 id='response-data'>Response Data</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Optional</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>account</td>
 <td><code>object</code></td>
+<td>true</td>
 <td>계정 정보</td>
 </tr>
 <tr>
 <td>account.balance</td>
 <td><code>string</code></td>
+<td>false</td>
 <td>계정의 현재 GNI 소유량</td>
 </tr>
 <tr>
 <td>accessToken</td>
 <td><code>string</code></td>
+<td>false</td>
 <td>인증 토큰</td>
 </tr>
 <tr>
 <td>refreshToken</td>
 <td><code>string</code></td>
+<td>false</td>
 <td>재발급 토큰</td>
 </tr>
 </tbody></table>
@@ -102,7 +119,7 @@
 <aside class="success">
 accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효 합니다.
 </aside>
-<h3 id='error-code'>Error code</h3>
+<h3 id='error-code'>Error Code</h3>
 <table><thead>
 <tr>
 <th>Code</th>
