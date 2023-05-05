@@ -65,11 +65,15 @@ axios
 
 로그인은 국가 전화번호를 포함한 전화번호와 비밀번호를 통해 진행됩니다.
 
-로그인 성공 시 응답(Response)으로 계정 정보와 인증 토큰을 반환합니다. 이때 계정(Account)은 GNI 거래에 사용되며 현재 소유량을 포함합니다.
+로그인 성공 시 응답(Response)으로 계정 정보와 인증 토큰을 반환합니다. 계정(Account)은 GNI 소유량을 포함한 정보를 가지고 있습니다.
 
 ### HTTP Request
 
 `POST /auth`
+
+### Scopes
+
+- No permission required
 
 ### Response Code
 
@@ -79,12 +83,12 @@ axios
 
 ### Response Data
 
-| Parameter     | Type     | Optional | Description |
-| ------------- | -------- | -------- | ----------- |
-| account | `object` | true | 계정 정보 |
-| account.balance | `string` | false | 계정의 현재 GNI 소유량 |
-| accessToken | `string` | false | 인증 토큰 |
-| refreshToken | `string` | false | 재발급 토큰 |
+| Parameter     | Type     | Description |
+| ------------- | -------- | ----------- |
+| account | `object` | 계정 정보 |
+| account.balance | `string` | GNI 소유량 |
+| accessToken | `string` | 인증 토큰 |
+| refreshToken | `string` | 재발급 토큰 |
 
 ### Access Token
 

@@ -1,0 +1,89 @@
+## Transfer
+
+> Request
+
+```http
+POST /account/transfer HTTP/1.1
+Host: <%= config[:host] %>
+Content-Type: application/json
+Authorization: Bearer {access_token}
+Content-Length: 85
+
+{
+    "toAddress": "0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B",
+    "amount": "1000000000000000000"
+}
+```
+
+```shell
+curl --location '<%= config[:base_url] %>/account/transfer' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {access_token}' \
+--data '{
+    "toAddress": "0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B",
+    "amount": "1000000000000000000"
+}'
+```
+
+```javascript
+const axios = require('axios');
+
+let data = JSON.stringify({
+  "toAddress": "0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B",
+  "amount": "1000000000000000000"
+});
+
+let config = {
+  method: 'post',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/account/transfer',
+  headers: { 
+    'Content-Type': 'application/json', 
+    'Authorization': 'Bearer {access_token}'
+  },
+  data : data
+};
+
+axios.request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+```
+
+GNI 토큰을 전송합니다.
+
+전송할 수 있는 토큰의 양은 사용자의 잔액을 초과할 수 없습니다. 사용자의 잔액을 초과하는 양을 전송하려고 하면 오류가 발생합니다.
+
+<aside class="warning">
+수신측 지갑은 Paradise Game 사용자의 지갑이어야 합니다. 그렇지 않을 경우 오류가 발생합니다.
+</aside>
+
+### HTTP Request
+
+`POST /account/transfer`
+
+### Scopes
+
+- `user:account`
+
+### Request Body
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| toAddress | string | true | 수신측 지갑 주소 |
+| amount | string | true | 전송할 토큰의 양 |
+
+`amount`는 `string` 타입이며, 소수점 18자리로 표현합니다. 예를 들어, 1 GNI를 전송하려면 `1000000000000000000`을 입력합니다.
+
+### Error Code
+
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 400 | INVALID_ADDRESS | 잘못된 지갑 주소 |
+| 400 | INVALID_AMOUNT | 잘못된 거래량 |
+| 404 | NOT_FOUND_ACCOUNT | 수신측 지갑을 찾을 수 없음 |
+| 403 | INSUFFICIENT_FUNDS | 잔액 부족 |

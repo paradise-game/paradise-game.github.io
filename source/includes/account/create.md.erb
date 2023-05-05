@@ -1,0 +1,72 @@
+## Create Wallet
+
+> Request
+
+```http
+POST /account HTTP/1.1
+Host: <%= config[:host] %>
+Authorization: Bearer {access_token}
+```
+
+```shell
+curl --location --request POST '<%= config[:base_url] %>/account' \
+--header 'Authorization: Bearer {access_token}'
+```
+
+```javascript
+const axios = require('axios');
+
+let config = {
+  method: 'post',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/account',
+  headers: { 
+    'Authorization': 'Bearer {access_token}'
+  }
+};
+
+axios.request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+> Response
+
+```json
+{
+  "account": {
+    "address": "0x3fADC5ff063A6107113509013B10F149868F34ec",
+    "balance": "0"
+  }
+}
+```
+
+새로운 지갑을 생성합니다.
+
+지갑이 생성되면 사용자 권한이 업데이트 됩니다. 사용자가 생성한 지갑에 대한 권한을 가지며 어카운트 서비스를 이용할 수 있습니다.
+
+### HTTP Request
+
+`POST /account`
+
+### Scopes
+
+- `user:verified`
+
+### Response Data
+
+Parameter | Type | Description
+--------- | ---- | -----------
+account | `object` | 계정 정보
+account.address | `string` | 계정주소
+account.balance | `string` | GNI 소유량
+
+### Error Code
+
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 400 | ALREADY_EXISTS_ACCOUNT | 이미 지갑이 생성됨 |

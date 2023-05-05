@@ -54,6 +54,18 @@ axios
 
 `POST /auth/refresh`
 
+### Scopes
+
+- `user:anonymous`
+- `user:verified`
+- `user:account`
+
+### Request Header
+
+| Parameter        | Required | Description |
+| ---------------- | -------- | ----------- |
+| X-Refresh-Token  | true | 재발급 토큰 |
+
 ### Response Code
 
 | Code | Description |
@@ -62,6 +74,6 @@ axios
 
 ### Response Data
 
-| Parameter      | Type     | Optional | Description |
-| -------------- | -------- | -------- | ----------- |
-| accessToken | `string` | false | 인증 토큰 |
+| Parameter      | Type     | Description |
+| -------------- | -------- | ----------- |
+| accessToken | `string` | 인증 토큰 |
