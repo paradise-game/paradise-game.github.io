@@ -42,6 +42,26 @@
 <p><code>accessToken</code>은 보안상에 이유로 유효 시간이 짧습니다. 프로그램 명세에 따라 토큰이 만료되기 전 재발급을 통해 유효 시간을 유지하세요.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /auth/refresh</code></p>
+<h3 id='scopes'>Scopes</h3>
+<ul>
+<li><code>user:anonymous</code></li>
+<li><code>user:verified</code></li>
+<li><code>user:account</code></li>
+</ul>
+<h3 id='request-header'>Request Header</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-Refresh-Token</td>
+<td>true</td>
+<td>재발급 토큰</td>
+</tr>
+</tbody></table>
 <h3 id='response-code'>Response Code</h3>
 <table><thead>
 <tr>
@@ -59,14 +79,12 @@
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Optional</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>accessToken</td>
 <td><code>string</code></td>
-<td>false</td>
 <td>인증 토큰</td>
 </tr>
 </tbody></table>

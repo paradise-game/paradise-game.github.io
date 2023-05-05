@@ -339,6 +339,20 @@
                   </li>
               </ul>
           </li>
+          <li>
+            <a href="#accounts" class="toc-h1 toc-link" data-title="ACCOUNTS">ACCOUNTS</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-account" class="toc-h2 toc-link" data-title="Get Account">Get Account</a>
+                  </li>
+                  <li>
+                    <a href="#create-wallet" class="toc-h2 toc-link" data-title="Create Wallet">Create Wallet</a>
+                  </li>
+                  <li>
+                    <a href="#transfer" class="toc-h2 toc-link" data-title="Transfer">Transfer</a>
+                  </li>
+              </ul>
+          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='#'>Sign Up for a Developer Key</a></li>
@@ -427,11 +441,17 @@
 
 <p>로그인은 국가 전화번호를 포함한 전화번호와 비밀번호를 통해 진행됩니다.</p>
 
-<p>로그인 성공 시 응답(Response)으로 계정 정보와 인증 토큰을 반환합니다. 이때 계정(Account)은 GNI 거래에 사용되며 현재 소유량을 포함합니다.</p>
+<p>로그인 성공 시 응답(Response)으로 계정 정보와 인증 토큰을 반환합니다. 계정(Account)은 GNI 소유량을 포함한 정보를 가지고 있습니다.</p>
 
 <h3 id='http-request'>HTTP Request</h3>
 
 <p><code>POST /auth</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li>No permission required</li>
+</ul>
 
 <h3 id='response-code'>Response Code</h3>
 
@@ -453,32 +473,27 @@
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Optional</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>account</td>
 <td><code>object</code></td>
-<td>true</td>
 <td>계정 정보</td>
 </tr>
 <tr>
 <td>account.balance</td>
 <td><code>string</code></td>
-<td>false</td>
-<td>계정의 현재 GNI 소유량</td>
+<td>GNI 소유량</td>
 </tr>
 <tr>
 <td>accessToken</td>
 <td><code>string</code></td>
-<td>false</td>
 <td>인증 토큰</td>
 </tr>
 <tr>
 <td>refreshToken</td>
 <td><code>string</code></td>
-<td>false</td>
 <td>재발급 토큰</td>
 </tr>
 </tbody></table>
@@ -569,6 +584,30 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 
 <p><code>POST /auth/refresh</code></p>
 
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li><code>user:anonymous</code></li>
+<li><code>user:verified</code></li>
+<li><code>user:account</code></li>
+</ul>
+
+<h3 id='request-header'>Request Header</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-Refresh-Token</td>
+<td>true</td>
+<td>재발급 토큰</td>
+</tr>
+</tbody></table>
+
 <h3 id='response-code'>Response Code</h3>
 
 <table><thead>
@@ -589,14 +628,12 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 <tr>
 <th>Parameter</th>
 <th>Type</th>
-<th>Optional</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>accessToken</td>
 <td><code>string</code></td>
-<td>false</td>
 <td>인증 토큰</td>
 </tr>
 </tbody></table>
@@ -626,12 +663,12 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 <span class="p">};</span>
 
 <span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="p">});</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
 </code></pre></div>
 
 <blockquote>
@@ -639,8 +676,8 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 </blockquote>
 
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01021004364"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"nickname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"지니"</span><span class="w">
+  </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01021004364"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"nickname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"지니"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 
@@ -648,7 +685,7 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 
 <h3 id='fields'>Fields</h3>
 
-<p>가져올 필드를 <code>field</code> 파라미터로 지정할 수 있습니다. 가져올 필드를 지정할 수 있으며, 지정된 필드는 응답에 포함됩니다.</p>
+<p>가져올 필드를 <code>field</code> 파라미터로 지정할 수 있습니다. 특정 필드를 지정할 수 있으며, 지정된 필드는 응답에 포함됩니다.</p>
 
 <table><thead>
 <tr>
@@ -669,6 +706,14 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 <h3 id='http-request'>HTTP Request</h3>
 
 <p><code>GET /user/me</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li><code>user:anonymous</code></li>
+<li><code>user:verified</code></li>
+<li><code>user:account</code></li>
+</ul>
 
 <h3 id='query-parameters'>Query Parameters</h3>
 
@@ -764,12 +809,12 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 <span class="p">};</span>
 
 <span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="p">});</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
 </code></pre></div>
 
 <p>푸시 알림을 위해 토큰을 저장합니다.</p>
@@ -782,11 +827,19 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 푸시 토큰은 클라이언트에서 직접 생성하여 서버로 전송해야 합니다. FCM SDK 또는 WebPush API 등을 이용하면 편리하게 푸시 토큰을 생성할 수 있습니다.
 </aside>
 
-<p>푸시 알림을 위한 토큰생성 구현은 <a href="https://www.rfc-editor.org/rfc/rfc8599">RFC8599</a>를 참고하세요.</p>
+<p>푸시 알림을 위한 토큰 생성 구현은 <a href="https://www.rfc-editor.org/rfc/rfc8599">RFC8599</a>를 참고하세요.</p>
 
 <h3 id='http-request'>HTTP Request</h3>
 
 <p><code>PATCH /user/push-token</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li><code>user:anonymous</code></li>
+<li><code>user:verified</code></li>
+<li><code>user:account</code></li>
+</ul>
 
 <h3 id='response-code'>Response Code</h3>
 
@@ -815,6 +868,382 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 <td>400</td>
 <td><code>INVALID_PUSH_TOKEN</code></td>
 <td>유효하지 않은 푸시 토큰</td>
+</tr>
+</tbody></table>
+
+<h1 id='accounts'>ACCOUNTS</h1>
+
+<h2 id='get-account'>Get Account</h2>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/account?field=address&amp;field=balance</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/account?field=address&amp;field=balance'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/account?field=address&amp;field=balance</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"999980"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+
+<p>사용자의 계정(EOA) 정보를 조회합니다.</p>
+
+<aside class="success">
+EOA(External Owned Account)는 개인이 소유한 블록체인 계정입니다.
+</aside>
+
+<p>계정에 대한 자세한 내용은 <a href="https://ethereum.org/en/whitepaper/#ethereum-accounts">이더리움 백서</a>를 참고하세요.</p>
+
+<h3 id='fields'>Fields</h3>
+
+<p>가져올 필드를 <code>field</code> 파라미터로 지정할 수 있습니다. 특정 필드를 지정할 수 있으며, 지정된 필드는 응답에 포함됩니다.</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>address</td>
+<td>계정주소</td>
+</tr>
+<tr>
+<td>balance</td>
+<td>GNI 소유량</td>
+</tr>
+</tbody></table>
+
+<h3 id='http-request'>HTTP Request</h3>
+
+<p><code>GET /account</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li><code>user:account</code></li>
+</ul>
+
+<h3 id='query-parameters'>Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>field</td>
+<td><code>string</code></td>
+<td>true</td>
+<td>가져올 필드</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-code'>Response Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-data'>Response Data</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Optional</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account</td>
+<td><code>object</code></td>
+<td>false</td>
+<td>계정 정보</td>
+</tr>
+<tr>
+<td>account.address</td>
+<td><code>string</code></td>
+<td>true</td>
+<td>계정주소</td>
+</tr>
+<tr>
+<td>account.balance</td>
+<td><code>string</code></td>
+<td>true</td>
+<td>GNI 소유량</td>
+</tr>
+</tbody></table>
+
+<p><code>string</code> 타입은 <a href="https://mikemcl.github.io/bignumber.js/">BigNumber.js</a> 라이브러리를 사용하여 계산해야 합니다.</p>
+
+<aside class="warning">
+GNI 소유량(balance)은 `string` 타입으로 반환되며 소수 자릿수(18=wei)를 반환합니다.
+</aside>
+
+<h2 id='create-wallet'>Create Wallet</h2>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/account</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://api.paradise.game/account'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/account</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x3fADC5ff063A6107113509013B10F149868F34ec"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+
+<p>새로운 지갑을 생성합니다.</p>
+
+<p>지갑이 생성되면 사용자 권한이 업데이트 됩니다. 사용자가 생성한 지갑에 대한 권한을 가지며 어카운트 서비스를 이용할 수 있습니다.</p>
+
+<h3 id='http-request'>HTTP Request</h3>
+
+<p><code>POST /account</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li><code>user:verified</code></li>
+</ul>
+
+<h3 id='response-data'>Response Data</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account</td>
+<td><code>object</code></td>
+<td>계정 정보</td>
+</tr>
+<tr>
+<td>account.address</td>
+<td><code>string</code></td>
+<td>계정주소</td>
+</tr>
+<tr>
+<td>account.balance</td>
+<td><code>string</code></td>
+<td>GNI 소유량</td>
+</tr>
+</tbody></table>
+
+<h3 id='error-code'>Error Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>ALREADY_EXISTS_ACCOUNT</td>
+<td>이미 지갑이 생성됨</td>
+</tr>
+</tbody></table>
+
+<h2 id='transfer'>Transfer</h2>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/account/transfer</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">85</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000000000000000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/account/transfer'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
+    "toAddress": "0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B",
+    "amount": "1000000000000000000"
+}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="dl">"</span><span class="s2">toAddress</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1000000000000000000</span><span class="dl">"</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/account/transfer</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span> 
+    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="na">data</span> <span class="p">:</span> <span class="nx">data</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+
+</code></pre></div>
+
+<p>GNI 토큰을 전송합니다.</p>
+
+<p>전송할 수 있는 토큰의 양은 사용자의 잔액을 초과할 수 없습니다. 사용자의 잔액을 초과하는 양을 전송하려고 하면 오류가 발생합니다.</p>
+
+<aside class="warning">
+수신측 지갑은 Paradise Game 사용자의 지갑이어야 합니다. 그렇지 않을 경우 오류가 발생합니다.
+</aside>
+
+<h3 id='http-request'>HTTP Request</h3>
+
+<p><code>POST /account/transfer</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li><code>user:account</code></li>
+</ul>
+
+<h3 id='request-body'>Request Body</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>toAddress</td>
+<td>string</td>
+<td>true</td>
+<td>수신측 지갑 주소</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>true</td>
+<td>전송할 토큰의 양</td>
+</tr>
+</tbody></table>
+
+<p><code>amount</code>는 <code>string</code> 타입이며, 소수점 18자리로 표현합니다. 예를 들어, 1 GNI를 전송하려면 <code>1000000000000000000</code>을 입력합니다.</p>
+
+<h3 id='error-code'>Error Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>INVALID_ADDRESS</td>
+<td>잘못된 지갑 주소</td>
+</tr>
+<tr>
+<td>400</td>
+<td>INVALID_AMOUNT</td>
+<td>잘못된 거래량</td>
+</tr>
+<tr>
+<td>404</td>
+<td>NOT_FOUND_ACCOUNT</td>
+<td>수신측 지갑을 찾을 수 없음</td>
+</tr>
+<tr>
+<td>403</td>
+<td>INSUFFICIENT_FUNDS</td>
+<td>잔액 부족</td>
 </tr>
 </tbody></table>
 

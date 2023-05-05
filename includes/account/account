@@ -1,18 +1,18 @@
-<h2 id='get-profile'>Get Profile</h2>
+<h2 id='get-account'>Get Account</h2>
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/user/me?field=phone&amp;field=nickname</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/account?field=address&amp;field=balance</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/user/me?field=phone&amp;field=nickname'</span> <span class="se">\</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/account?field=address&amp;field=balance'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
-  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/user/me?field=phone&amp;field=nickname</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/account?field=address&amp;field=balance</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
     <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
   <span class="p">}</span>
@@ -30,11 +30,19 @@
 <p>Response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01021004364"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"nickname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"지니"</span><span class="w">
+  </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"999980"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>사용자의 프로필을 조회합니다.</p>
+<p>사용자의 계정(EOA) 정보를 조회합니다.</p>
+
+<aside class="success">
+EOA(External Owned Account)는 개인이 소유한 블록체인 계정입니다.
+</aside>
+
+<p>계정에 대한 자세한 내용은 <a href="https://ethereum.org/en/whitepaper/#ethereum-accounts">이더리움 백서</a>를 참고하세요.</p>
 <h3 id='fields'>Fields</h3>
 <p>가져올 필드를 <code>field</code> 파라미터로 지정할 수 있습니다. 특정 필드를 지정할 수 있으며, 지정된 필드는 응답에 포함됩니다.</p>
 
@@ -45,20 +53,18 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>phone</td>
-<td>전화번호</td>
+<td>address</td>
+<td>계정주소</td>
 </tr>
 <tr>
-<td>nickname</td>
-<td>닉네임</td>
+<td>balance</td>
+<td>GNI 소유량</td>
 </tr>
 </tbody></table>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /user/me</code></p>
+<p><code>GET /account</code></p>
 <h3 id='scopes'>Scopes</h3>
 <ul>
-<li><code>user:anonymous</code></li>
-<li><code>user:verified</code></li>
 <li><code>user:account</code></li>
 </ul>
 <h3 id='query-parameters'>Query Parameters</h3>
@@ -99,15 +105,27 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>phone</td>
-<td><code>string</code></td>
-<td>true</td>
-<td>전화번호</td>
+<td>account</td>
+<td><code>object</code></td>
+<td>false</td>
+<td>계정 정보</td>
 </tr>
 <tr>
-<td>nickname</td>
+<td>account.address</td>
 <td><code>string</code></td>
 <td>true</td>
-<td>닉네임</td>
+<td>계정주소</td>
+</tr>
+<tr>
+<td>account.balance</td>
+<td><code>string</code></td>
+<td>true</td>
+<td>GNI 소유량</td>
 </tr>
 </tbody></table>
+
+<p><code>string</code> 타입은 <a href="https://mikemcl.github.io/bignumber.js/">BigNumber.js</a> 라이브러리를 사용하여 계산해야 합니다.</p>
+
+<aside class="warning">
+GNI 소유량(balance)은 `string` 타입으로 반환되며 소수 자릿수(18=wei)를 반환합니다.
+</aside>
