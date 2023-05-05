@@ -1,0 +1,78 @@
+## Push Token
+
+> Request
+
+```http
+PATCH /user/push-token HTTP/1.1
+Host: <%= config[:host] %>
+Content-Type: application/json
+Authorization: Bearer {access_token}
+Content-Length: 182
+
+{
+    "token": "fqC0SHrP0DROk514Loymhd:APA91bGqlHKCNzzamWpxMcdjR2rMSjfjSQoLce28KxmzJnIxfeBy89ux5KTmXB0lA73OHH5M0mR-PUY5qAbnwBCY69T0R1kh2AvPSBwamR61aHRcxS_EdGASm3eBl_EFKHpDM_tatnAv"
+}
+```
+
+```shell
+curl --location --request PATCH '<%= config[:base_url] %>/user/push-token' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {access_token}' \
+--data '{
+    "token": "fqC0SHrP0DROk514Loymhd:APA91bGqlHKCNzzamWpxMcdjR2rMSjfjSQoLce28KxmzJnIxfeBy89ux5KTmXB0lA73OHH5M0mR-PUY5qAbnwBCY69T0R1kh2AvPSBwamR61aHRcxS_EdGASm3eBl_EFKHpDM_tatnAv"
+}'
+```
+
+```javascript
+const axios = require('axios');
+let data = JSON.stringify({
+  "token": "fqC0SHrP0DROk514Loymhd:APA91bGqlHKCNzzamWpxMcdjR2rMSjfjSQoLce28KxmzJnIxfeBy89ux5KTmXB0lA73OHH5M0mR-PUY5qAbnwBCY69T0R1kh2AvPSBwamR61aHRcxS_EdGASm3eBl_EFKHpDM_tatnAv"
+});
+
+let config = {
+  method: 'patch',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/user/push-token',
+  headers: { 
+    'Content-Type': 'application/json', 
+    'Authorization': 'Bearer {access_token}'
+  },
+  data : data
+};
+
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error);
+});
+```
+
+푸시 알림을 위해 토큰을 저장합니다.
+
+저장된 토큰을 이용하여 Paradise Game 플랫폼에서 클라이언트 기기로 푸시 알림을 보내기 위해 사용됩니다.
+푸시 토큰은 알림을 보내기 위한 고유 식별자입니다.
+클라이언트 기기에서 생성되며, 클라이언트 기기의 푸시 알림을 받을 수 있는 상태에서만 생성됩니다.
+
+<aside class="notice">
+푸시 토큰은 클라이언트에서 직접 생성하여 서버로 전송해야 합니다. FCM SDK 또는 WebPush API 등을 이용하면 편리하게 푸시 토큰을 생성할 수 있습니다.
+</aside>
+
+푸시 알림을 위한 토큰생성 구현은 [RFC8599](https://www.rfc-editor.org/rfc/rfc8599)를 참고하세요.
+
+### HTTP Request
+
+`PATCH /user/push-token`
+
+### Response Code
+
+| Code | Description |
+| ---- | ----------- |
+| 204  | No Content  |
+
+### Error Code
+
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 400  | `INVALID_PUSH_TOKEN` | 유효하지 않은 푸시 토큰 |

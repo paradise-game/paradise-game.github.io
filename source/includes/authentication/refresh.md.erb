@@ -54,8 +54,14 @@ axios
 
 `POST /auth/refresh`
 
-### Response data
+### Response Code
 
-| Parameter      | Type     | Description |
-| -------------- | -------- | ----------- |
-| accessToken | `string` | 인증 토큰 |
+| Code | Description |
+| ---- | ----------- |
+| 200  | OK          |
+
+### Response Data
+
+| Parameter      | Type     | Optional | Description |
+| -------------- | -------- | -------- | ----------- |
+| accessToken | `string` | false | 인증 토큰 |

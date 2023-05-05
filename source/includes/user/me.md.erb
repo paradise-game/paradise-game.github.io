@@ -1,0 +1,78 @@
+## Get Profile
+
+> Request
+
+```http
+GET /user/me?field=phone&field=nickname HTTP/1.1
+Host: <%= config[:host] %>
+Authorization: Bearer {access_token}
+```
+
+```shell
+curl --location '<%= config[:base_url] %>/user/me?field=phone&field=nickname' \
+--header 'Authorization: Bearer {access_token}'
+```
+
+```javascript
+const axios = require('axios');
+
+let config = {
+  method: 'get',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/user/me?field=phone&field=nickname',
+  headers: { 
+    'Authorization': 'Bearer {access_token}'
+  }
+};
+
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error);
+});
+```
+
+> Response
+
+```json
+{
+    "phone": "01021004364",
+    "nickname": "지니"
+}
+```
+
+사용자의 프로필을 조회합니다.
+
+### Fields
+
+가져올 필드를 `field` 파라미터로 지정할 수 있습니다. 가져올 필드를 지정할 수 있으며, 지정된 필드는 응답에 포함됩니다.
+
+Field | Description
+----- | -----------
+phone | 전화번호
+nickname | 닉네임
+
+### HTTP Request
+
+`GET /user/me`
+
+### Query Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+field | `string` | true | 가져올 필드
+
+### Response Code
+
+| Code | Description |
+| ---- | ----------- |
+| 200  | OK          |
+
+### Response Data
+
+Parameter | Type | Optional | Description
+--------- | ---- | -------- | -----------
+phone | `string` | true | 전화번호
+nickname | `string` | true | 닉네임

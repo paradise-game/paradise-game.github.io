@@ -71,14 +71,20 @@ axios
 
 `POST /auth`
 
-### Response data
+### Response Code
 
-| Parameter      | Type     | Description |
-| -------------- | -------- | ----------- |
-| account | `object` | 계정 정보 |
-| account.balance | `string` | 계정의 현재 GNI 소유량 |
-| accessToken | `string` | 인증 토큰 |
-| refreshToken | `string` | 재발급 토큰 |
+| Code | Description |
+| ---- | ----------- |
+| 200  | OK          |
+
+### Response Data
+
+| Parameter     | Type     | Optional | Description |
+| ------------- | -------- | -------- | ----------- |
+| account | `object` | true | 계정 정보 |
+| account.balance | `string` | false | 계정의 현재 GNI 소유량 |
+| accessToken | `string` | false | 인증 토큰 |
+| refreshToken | `string` | false | 재발급 토큰 |
 
 ### Access Token
 
@@ -98,7 +104,7 @@ API 요청의 대부분은 인증 토큰(access_token)을 요구합니다.
 accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효 합니다.
 </aside>
 
-### Error code
+### Error Code
 
 | Code | Message | Description |
 | ---- | ------- | ----------- |
