@@ -90,8 +90,8 @@ account | `object` | false | 계정 정보
 account.address | `string` | true | 계정주소
 account.balance | `string` | true | GNI 소유량
 
-`amount`는 `string` 타입이며, 소수점 18자리로 표현합니다. 예를 들어, 1000000000000000000 = 1 GNI 입니다. [BigNumber.js](https://mikemcl.github.io/bignumber.js/) 라이브러리를 사용하여 계산해야 합니다.
+`amount`는 `string` 타입이며, 소수점 18자리로 표현합니다. [BigNumber.js](https://mikemcl.github.io/bignumber.js/) 라이브러리를 사용하여 계산해야 합니다.
 
-<aside class="warning">
-GNI 소유량(balance)은 `string` 타입으로 반환되며 소수 자릿수(18=wei)를 반환합니다.
+<aside class="notice">
+GNI 소유량(balance)은 소수 자릿수(18=wei)를 반환합니다. 예를 들어, 1000000000000000000 = 1 GNI 입니다.
 </aside>
