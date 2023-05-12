@@ -63,6 +63,10 @@ axios.request(config)
 
 사용자를 등록합니다.
 
+<aside class="notice">
+비밀번호는 영어 대소문자, 숫자, 특수문자를 포함해 8자 이상으로 구성되어야 합니다.
+</aside>
+
 ### HTTP Request
 
 `POST /auth`
@@ -88,5 +92,6 @@ axios.request(config)
 
 | Code | Message | Description |
 | ---- | ------- | ----------- |
+| 400 | `INVALID_PASSWORD` | 유효하지 않은 비밀번호 |
 | 400 | `ALREADY_EXISTS_PHONE` | 이미 서버에 등록된 전화번호 |
 | 400 | `ALREADY_EXISTS_NICKNAME` | 이미 서버에 등록된 닉네임 |
