@@ -3,7 +3,7 @@
 > Request
 
 ```http
-GET /account?field=address&field=balance HTTP/1.1
+GET <%= config[:version] %>/account?field=address&field=balance HTTP/1.1
 Host: <%= config[:host] %>
 Authorization: Bearer {access_token}
 ```
@@ -64,7 +64,7 @@ balance | GNI 소유량
 
 ### HTTP Request
 
-`GET /account`
+`GET <%= config[:version] %>/account`
 
 ### Scopes
 

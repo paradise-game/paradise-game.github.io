@@ -3,7 +3,7 @@
 > Request
 
 ```http
-POST /auth/refresh HTTP/1.1
+POST <%= config[:version] %>/auth/refresh HTTP/1.1
 Host: <%= config[:host] %>
 X-Refresh-Token: {refresh_token}
 Authorization: Bearer {access_token}
@@ -52,7 +52,7 @@ axios
 
 ### HTTP Request
 
-`POST /auth/refresh`
+`POST <%= config[:version] %>/auth/refresh`
 
 ### Scopes
 

@@ -3,7 +3,7 @@
 > Request
 
 ```http
-PATCH /user/push-token HTTP/1.1
+PATCH <%= config[:version] %>/user/push-token HTTP/1.1
 Host: <%= config[:host] %>
 Content-Type: application/json
 Authorization: Bearer {access_token}
@@ -63,7 +63,7 @@ axios.request(config)
 
 ### HTTP Request
 
-`PATCH /user/push-token`
+`PATCH <%= config[:version] %>/user/push-token`
 
 ### Scopes
 

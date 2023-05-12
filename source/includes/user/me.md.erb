@@ -3,7 +3,7 @@
 > Request
 
 ```http
-GET /user/me?field=phone&field=nickname HTTP/1.1
+GET <%= config[:version] %>/user/me?field=phone&field=nickname HTTP/1.1
 Host: <%= config[:host] %>
 Authorization: Bearer {access_token}
 ```
@@ -56,7 +56,7 @@ nickname | 닉네임
 
 ### HTTP Request
 
-`GET /user/me`
+`GET <%= config[:version] %>/user/me`
 
 ### Scopes
 
