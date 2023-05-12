@@ -3,7 +3,7 @@
 > Request
 
 ```http
-POST /auth/verification/send HTTP/1.1
+POST <%= config[:version] %>/auth/verification/send HTTP/1.1
 Host: <%= config[:host] %>
 Authorization: Bearer {access_token}
 ```
@@ -41,7 +41,7 @@ axios.request(config)
 
 ### HTTP Request
 
-`POST /verification/send`
+`POST <%= config[:version] %>/verification/send`
 
 ### SCOPES
 

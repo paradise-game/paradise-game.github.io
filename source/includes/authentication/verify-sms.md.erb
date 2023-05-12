@@ -3,7 +3,7 @@
 > Request
 
 ```http
-POST /auth/verification/sms HTTP/1.1
+POST <%= config[:version] %>/auth/verification/sms HTTP/1.1
 Host: <%= config[:host] %>
 Content-Type: application/json
 Authorization: Bearer {access_token}
@@ -57,7 +57,7 @@ axios.request(config)
 
 ### HTTP Request
 
-`POST /verification/sms`
+`POST <%= config[:version] %>/verification/sms`
 
 ### Scopes
 
