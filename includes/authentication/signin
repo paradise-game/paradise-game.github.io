@@ -11,7 +11,7 @@
     </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01021004364"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test@123"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/auth'</span> <span class="se">\</span>
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/v1/auth'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 <span class="nt">--data-raw</span> <span class="s1">'{
     "phone": "01021004364",
@@ -27,7 +27,7 @@
 <span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="dl">"</span><span class="s2">post</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
-  <span class="na">url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.paradise.game/auth</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">"</span><span class="s2">https://api.paradise.game/v1/auth</span><span class="dl">"</span><span class="p">,</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
     <span class="dl">"</span><span class="s2">Content-Type</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">application/json</span><span class="dl">"</span><span class="p">,</span>
   <span class="p">},</span>

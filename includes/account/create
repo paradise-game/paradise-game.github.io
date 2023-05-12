@@ -5,14 +5,14 @@
 <div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/account</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://api.paradise.game/account'</span> <span class="se">\</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://api.paradise.game/v1/account'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
-  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/account</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/account</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
     <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
   <span class="p">}</span>

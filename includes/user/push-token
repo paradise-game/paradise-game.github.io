@@ -11,7 +11,7 @@
 <span class="p">{</span><span class="w">
     </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fqC0SHrP0DROk514Loymhd:APA91bGqlHKCNzzamWpxMcdjR2rMSjfjSQoLce28KxmzJnIxfeBy89ux5KTmXB0lA73OHH5M0mR-PUY5qAbnwBCY69T0R1kh2AvPSBwamR61aHRcxS_EdGASm3eBl_EFKHpDM_tatnAv"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PATCH <span class="s1">'https://api.paradise.game/user/push-token'</span> <span class="se">\</span>
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PATCH <span class="s1">'https://api.paradise.game/v1/user/push-token'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span> <span class="se">\</span>
 <span class="nt">--data</span> <span class="s1">'{
@@ -25,7 +25,7 @@
 <span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">patch</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
-  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/user/push-token</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/user/push-token</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
     <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span> 
     <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>

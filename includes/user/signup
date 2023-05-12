@@ -1,0 +1,111 @@
+<h2 id='sign-up'>Sign Up</h2>
+<blockquote>
+<p>Request</p>
+</blockquote>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/v1/auth</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">108</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+821093814181"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test@123"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"nickname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/v1'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data-raw</span> <span class="s1">'{
+    "phone": "+821093814181",
+    "password": "Test@123",
+    "nickname": "123"
+}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="dl">"</span><span class="s2">phone</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">+821093814181</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">password</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test@123</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">nickname</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">123</span><span class="dl">"</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/auth</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="na">data</span> <span class="p">:</span> <span class="nx">data</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+<blockquote>
+<p>Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"accessToken"</span><span class="p">:</span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4ODg4MTkzYTdmNGYzYmI3Y2E1M2JmYTAyMDZiZTU0YzplMGE0IiwiaWF0IjoxNjgzODU1Nzc4LCJleHAiOjE2ODM4NTc2Mzh9.yM2cSJlWkMJZhbbUcKmi9ih8BIMIchK6HsK2Cdrufxs"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"refreshToken"</span><span class="p">:</span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4N2E1YzY4NGIxOTZhYzQwOWM1OTIzZDNhYjVjZDQ5NzoyMTk0YjQ5Njg1MzJlMyIsImlhdCI6MTY4Mzg1NTc3OCwiZXhwIjoxNjgzODU3NjM4fQ.a7i9jWyCB81VZpLv3l8-ThSGRiJQQZ5drLJGOOhrIk8"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>사용자를 등록합니다.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /auth</code></p>
+<h3 id='scopes'>Scopes</h3>
+<ul>
+<li>No permission required</li>
+</ul>
+<h3 id='response-code'>Response Code</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Created</td>
+</tr>
+</tbody></table>
+<h3 id='response-data'>Response Data</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>accessToken</td>
+<td><code>string</code></td>
+<td>인증 토큰</td>
+</tr>
+<tr>
+<td>refreshToken</td>
+<td><code>string</code></td>
+<td>재발급 토큰</td>
+</tr>
+</tbody></table>
+<h3 id='error-code'>Error Code</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td><code>ALREADY_EXISTS_PHONE</code></td>
+<td>이미 서버에 등록된 전화번호</td>
+</tr>
+<tr>
+<td>400</td>
+<td><code>ALREADY_EXISTS_NICKNAME</code></td>
+<td>이미 서버에 등록된 닉네임</td>
+</tr>
+</tbody></table>
