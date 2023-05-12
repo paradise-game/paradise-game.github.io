@@ -72,5 +72,9 @@ config[:schema]
 set :host, 'api.paradise.game'
 config[:host]
 
-set :base_url, "#{config[:schema]}#{config[:host]}"
+set :version, '/v1'
+config[:version]
+
+set :base_url, "#{config[:schema]}#{config[:host]}#{config[:version]}"
 config[:base_url]
+
