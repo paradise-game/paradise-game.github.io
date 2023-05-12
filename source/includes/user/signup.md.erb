@@ -1,0 +1,92 @@
+## Sign Up
+
+> Request
+
+```http
+POST <%= config[:version] %>/auth HTTP/1.1
+Host: <%= config[:host] %>
+Content-Type: application/json
+Content-Length: 108
+
+{
+    "phone": "+821093814181",
+    "password": "Test@123",
+    "nickname": "123"
+}
+```
+
+```shell
+curl --location '<%= config[:base_url] %>' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "phone": "+821093814181",
+    "password": "Test@123",
+    "nickname": "123"
+}'
+```
+
+```javascript
+const axios = require('axios');
+let data = JSON.stringify({
+  "phone": "+821093814181",
+  "password": "Test@123",
+  "nickname": "123"
+});
+
+let config = {
+  method: 'post',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/auth',
+  headers: { 
+    'Content-Type': 'application/json'
+  },
+  data : data
+};
+
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error);
+});
+```
+
+> Response
+
+```json
+{
+    "accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4ODg4MTkzYTdmNGYzYmI3Y2E1M2JmYTAyMDZiZTU0YzplMGE0IiwiaWF0IjoxNjgzODU1Nzc4LCJleHAiOjE2ODM4NTc2Mzh9.yM2cSJlWkMJZhbbUcKmi9ih8BIMIchK6HsK2Cdrufxs",
+    "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4N2E1YzY4NGIxOTZhYzQwOWM1OTIzZDNhYjVjZDQ5NzoyMTk0YjQ5Njg1MzJlMyIsImlhdCI6MTY4Mzg1NTc3OCwiZXhwIjoxNjgzODU3NjM4fQ.a7i9jWyCB81VZpLv3l8-ThSGRiJQQZ5drLJGOOhrIk8"
+}
+```
+
+사용자를 등록합니다.
+
+### HTTP Request
+
+`POST /auth`
+
+### Scopes
+
+- No permission required
+
+### Response Code
+
+| Code | Description |
+| ---- | ----------- |
+| 201 | Created     |
+
+### Response Data
+
+| Parameter   | Type   | Description |
+| ----------- | ------ | ----------- |
+| accessToken | `string` | 인증 토큰 |
+| refreshToken| `string` | 재발급 토큰 |
+
+### Error Code
+
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 400 | `ALREADY_EXISTS_PHONE` | 이미 서버에 등록된 전화번호 |
+| 400 | `ALREADY_EXISTS_NICKNAME` | 이미 서버에 등록된 닉네임 |
