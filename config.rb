@@ -62,9 +62,6 @@ helpers do
   require './lib/toc_data.rb'
 end
 
-# Using Live Reload
-activate :livereload
-
 # Global Variables
 set :schema, 'https://'
 config[:schema]

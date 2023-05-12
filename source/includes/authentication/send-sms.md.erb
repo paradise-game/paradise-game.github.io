@@ -1,0 +1,62 @@
+## Send SMS Code
+
+> Request
+
+```http
+POST <%= config[:version] %>/auth/verification/send HTTP/1.1
+Host: <%= config[:host] %>
+Authorization: Bearer {access_token}
+```
+
+```shell
+curl --location --request POST '<%= config[:base_url] %>/auth/verification/send' \
+--header 'Authorization: Bearer {access_token}'
+```
+
+```javascript
+const axios = require('axios');
+
+let config = {
+  method: 'post',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/auth/verification/send',
+  headers: { 
+    'Authorization': 'Bearer {access_token}'
+  }
+};
+
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error);
+});
+
+```
+
+사용자에게 인증코드를 전송합니다.
+
+`Twilio API`를 이용해 인증코드를 전송합니다. 해당 API에 대한 자세한 내용은 [트윌로 공식 문서](https://www.twilio.com/docs/sms/send-messages)를 참고하세요.
+
+### HTTP Request
+
+`POST <%= config[:version] %>/verification/send`
+
+### SCOPES
+
+- `user:anonymous`
+
+### Response Code 
+
+| Code | Description |
+| ---- | ----------- |
+| 204  | No Content  |
+
+
+
+### Error Code
+
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 401 | `Unauthorized` | 인증되지 않은 사용자입니다. |

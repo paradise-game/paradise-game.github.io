@@ -3,7 +3,7 @@
 > Request
 
 ```http
-POST /account/transfer HTTP/1.1
+POST <%= config[:version] %>/account/transfer HTTP/1.1
 Host: <%= config[:host] %>
 Content-Type: application/json
 Authorization: Bearer {access_token}
@@ -64,7 +64,7 @@ GNI 토큰을 전송합니다.
 
 ### HTTP Request
 
-`POST /account/transfer`
+`POST <%= config[:version] %>/account/transfer`
 
 ### Scopes
 
