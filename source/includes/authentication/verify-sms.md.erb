@@ -1,0 +1,78 @@
+## Verify SMS Code
+
+> Request
+
+```http
+POST /auth/verification/sms HTTP/1.1
+Host: <%= config[:host] %>
+Content-Type: application/json
+Authorization: Bearer {access_token}
+Content-Length: 54
+
+{
+    "phone": "+821093814181",
+    "code": "111111"
+}
+```
+
+```shell
+curl --location '<%= config[:base_url] %>/auth/verification/sms ' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {access_token}' \
+--data '{
+    "phone": "+821093814181",
+    "code": "111111"
+}'
+```
+
+```javascript
+const axios = require('axios');
+let data = JSON.stringify({
+  "phone": "+821093814181",
+  "code": "111111"
+});
+
+let config = {
+  method: 'post',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/auth/verification/sms',
+  headers: { 
+    'Content-Type': 'application/json', 
+    'Authorization': 'Bearer {access_token}'
+  },
+  data : data
+};
+
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error);
+});
+
+```
+
+사용자에게서 인증코드를 받아 검증합니다.
+
+### HTTP Request
+
+`POST /verification/sms`
+
+### Scopes
+
+- `user:anonymous`
+
+### Response Code
+
+| Code | Description |
+| ---- | ----------- |
+| 204  | No Content  |
+
+### Error Code
+
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 400 | `ALREADY_VERIFIED_PHONE` | 이미 인증된 전화번호 |
+| 400 | `INVALID_VERIFICATION_CODE` | 유효하지 않은 인증코드 |
+| 401 | `VERIFICATION_CODE_UNAVAILABLE_OR_EXPIRED` | 인증코드가 존재하지 않거나 만료됨 |
