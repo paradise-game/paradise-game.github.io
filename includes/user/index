@@ -60,6 +60,10 @@
 
 <p>사용자를 등록합니다.</p>
 
+<aside class="notice">
+비밀번호는 영어 대소문자, 숫자, 특수문자를 포함해 8자 이상으로 구성되어야 합니다.
+</aside>
+
 <h3 id='http-request'>HTTP Request</h3>
 
 <p><code>POST /v1/auth</code></p>
@@ -114,6 +118,11 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td><code>INVALID_PASSWORD</code></td>
+<td>유효하지 않은 비밀번호</td>
+</tr>
 <tr>
 <td>400</td>
 <td><code>ALREADY_EXISTS_PHONE</code></td>
@@ -371,19 +380,19 @@
 
 <span class="p">{</span><span class="w">
     </span><span class="nl">"currentPassword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test@123"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test@123"</span><span class="w">
+    </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Abc@123"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PATCH <span class="s1">'https://api.paradise.game/v1/user/password'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span> <span class="se">\</span>
 <span class="nt">--data-raw</span> <span class="s1">'{
     "currentPassword": "Test@123",
-    "password": "test@123"
+    "password": "Abc@123"
 }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
   <span class="dl">"</span><span class="s2">currentPassword</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Test@123</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">password</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">test@123</span><span class="dl">"</span>
+  <span class="dl">"</span><span class="s2">password</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Abc@123</span><span class="dl">"</span>
 <span class="p">});</span>
 
 <span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
@@ -407,6 +416,10 @@
 </code></pre></div>
 
 <p>사용자의 비밀번호를 변경합니다.</p>
+
+<aside class="notice">
+변경하는 비밀번호는 영어 대소문자, 숫자, 특수문자를 포함해 8자 이상으로 구성되어야 합니다.
+</aside>
 
 <h3 id='http-request'>HTTP Request</h3>
 

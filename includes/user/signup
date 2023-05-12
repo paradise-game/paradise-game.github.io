@@ -53,6 +53,10 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>사용자를 등록합니다.</p>
+
+<aside class="notice">
+비밀번호는 영어 대소문자, 숫자, 특수문자를 포함해 8자 이상으로 구성되어야 합니다.
+</aside>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /v1/auth</code></p>
 <h3 id='scopes'>Scopes</h3>
@@ -98,6 +102,11 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>400</td>
+<td><code>INVALID_PASSWORD</code></td>
+<td>유효하지 않은 비밀번호</td>
+</tr>
 <tr>
 <td>400</td>
 <td><code>ALREADY_EXISTS_PHONE</code></td>
