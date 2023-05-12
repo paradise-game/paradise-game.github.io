@@ -2,7 +2,7 @@
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/auth/verification/send</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/v1/auth/verification/send</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://api.paradise.game/v1/auth/verification/send'</span> <span class="se">\</span>
@@ -31,7 +31,7 @@
 
 <p><code>Twilio API</code>를 이용해 인증코드를 전송합니다. 해당 API에 대한 자세한 내용은 <a href="https://www.twilio.com/docs/sms/send-messages">트윌로 공식 문서</a>를 참고하세요.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /verification/send</code></p>
+<p><code>POST /v1/verification/send</code></p>
 <h3 id='scopes'>SCOPES</h3>
 <ul>
 <li><code>user:anonymous</code></li>
