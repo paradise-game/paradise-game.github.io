@@ -2,7 +2,7 @@
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/auth/refresh</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/v1/auth/refresh</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
 <span class="na">X-Refresh-Token</span><span class="p">:</span> <span class="s">{refresh_token}</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
@@ -41,7 +41,7 @@
 
 <p><code>accessToken</code>은 보안상에 이유로 유효 시간이 짧습니다. 프로그램 명세에 따라 토큰이 만료되기 전 재발급을 통해 유효 시간을 유지하세요.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /auth/refresh</code></p>
+<p><code>POST /v1/auth/refresh</code></p>
 <h3 id='scopes'>Scopes</h3>
 <ul>
 <li><code>user:anonymous</code></li>

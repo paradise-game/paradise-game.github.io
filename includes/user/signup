@@ -54,7 +54,7 @@
 </span></code></pre></div>
 <p>사용자를 등록합니다.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /auth</code></p>
+<p><code>POST /v1/auth</code></p>
 <h3 id='scopes'>Scopes</h3>
 <ul>
 <li>No permission required</li>

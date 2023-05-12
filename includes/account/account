@@ -2,7 +2,7 @@
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/account?field=address&amp;field=balance</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/v1/account?field=address&amp;field=balance</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
 </code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/v1/account?field=address&amp;field=balance'</span> <span class="se">\</span>
@@ -62,7 +62,7 @@ EOA(External Owned Account)는 개인이 소유한 블록체인 계정입니다.
 </tr>
 </tbody></table>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /account</code></p>
+<p><code>GET /v1/account</code></p>
 <h3 id='scopes'>Scopes</h3>
 <ul>
 <li><code>user:account</code></li>

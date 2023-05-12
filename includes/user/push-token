@@ -2,7 +2,7 @@
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">/user/push-token</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">/v1/user/push-token</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
@@ -53,7 +53,7 @@
 
 <p>푸시 알림을 위한 토큰 생성 구현은 <a href="https://www.rfc-editor.org/rfc/rfc8599">RFC8599</a>를 참고하세요.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>PATCH /user/push-token</code></p>
+<p><code>PATCH /v1/user/push-token</code></p>
 <h3 id='scopes'>Scopes</h3>
 <ul>
 <li><code>user:anonymous</code></li>
