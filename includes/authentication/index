@@ -103,6 +103,11 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>authentication.role.type</td>
+<td><code>string</code></td>
+<td>권한 종류</td>
+</tr>
+<tr>
 <td>account</td>
 <td><code>object</code></td>
 <td>계정 정보</td>
@@ -123,6 +128,32 @@
 <td>재발급 토큰</td>
 </tr>
 </tbody></table>
+
+<h3 id='role-type'>Role Type</h3>
+
+<p>권한 종류는 다음과 같습니다.</p>
+
+<table><thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>account</td>
+<td>계정 소유자</td>
+</tr>
+<tr>
+<td>verified</td>
+<td>인증된 사용자</td>
+</tr>
+<tr>
+<td>anonymous</td>
+<td>비인증 사용자</td>
+</tr>
+</tbody></table>
+
+<p><strong>계정 소유자</strong>는 지갑을 생성한 사용자를 의미합니다. 지갑 생성은 <code>verified</code> 권한을 요구합니다.</p>
 
 <h3 id='access-token'>Access Token</h3>
 

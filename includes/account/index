@@ -298,13 +298,24 @@ GNI 소유량(balance)은 소수 자릿수(18=wei)를 반환합니다. 예를 �
 
 </code></pre></div>
 
+<blockquote>
+<p>Response</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"withdrawalHistoryId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"436fd76b-ac6a-4332-b533-c8c372d1a3fb"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000000000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-18T13:35:48.110Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+
 <p>GNI 토큰을 전송합니다.</p>
 
-<p>전송할 수 있는 토큰의 양은 사용자의 잔액을 초과할 수 없습니다. 사용자의 잔액을 초과하는 양을 전송하려고 하면 오류가 발생합니다.</p>
+<p>오프체인에서 사용자의 지갑으로부터 GNI 토큰을 전송합니다. 따라서 <code>transfer</code> 거래는 수수료가 발생하지 않습니다.</p>
 
-<aside class="warning">
-수신측 지갑은 Paradise Game 사용자의 지갑이어야 합니다. 그렇지 않을 경우 오류가 발생합니다.
-</aside>
+<p>수신측 지갑은 Paradise Game 사용자의 지갑이어야 합니다. 그렇지 않을 경우 오류가 발생합니다.</p>
 
 <h3 id='http-request'>HTTP Request</h3>
 
@@ -342,6 +353,58 @@ GNI 소유량(balance)은 소수 자릿수(18=wei)를 반환합니다. 예를 �
 
 <p><code>amount</code>는 <code>string</code> 타입이며, 소수점 18자리로 표현합니다. 예를 들어, 1 GNI를 전송하려면 <code>1000000000000000000</code>을 입력합니다.</p>
 
+<h3 id='response-code'>Response Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-data'>Response Data</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>withdrawalHistoryId</td>
+<td>string</td>
+<td>전송 내역 ID</td>
+</tr>
+<tr>
+<td>fromAddress</td>
+<td>string</td>
+<td>송신측 지갑 주소</td>
+</tr>
+<tr>
+<td>toAddress</td>
+<td>string</td>
+<td>수신측 지갑 주소</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>전송한 토큰의 양</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>string</td>
+<td>전송 일시</td>
+</tr>
+</tbody></table>
+
+<p>마찬가지로 <code>amount</code>는 <code>string</code> 타입이며, 소수점 18자리로 표현합니다.</p>
+
 <h3 id='error-code'>Error Code</h3>
 
 <table><thead>
@@ -353,18 +416,254 @@ GNI 소유량(balance)은 소수 자릿수(18=wei)를 반환합니다. 예를 �
 </thead><tbody>
 <tr>
 <td>400</td>
-<td>INVALID_ADDRESS</td>
-<td>잘못된 지갑 주소</td>
+<td>INVALID_AMOUNT</td>
+<td>잘못된 거래량</td>
 </tr>
+<tr>
+<td>400</td>
+<td>CANNOT_SELF_TRANSFER</td>
+<td>자기 자신에게 전송할 수 없음</td>
+</tr>
+<tr>
+<td>403</td>
+<td>INSUFFICIENT_FUNDS</td>
+<td>잔액 부족</td>
+</tr>
+<tr>
+<td>404</td>
+<td>NOT_FOUND_ACCOUNT</td>
+<td>수신측 지갑을 찾을 수 없음</td>
+</tr>
+</tbody></table>
+
+<h2 id='withdraw'>Withdraw</h2>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/v1/account/withdraw</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">X-Verification-Code</span><span class="p">:</span> <span class="s">{verification_code}</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">102</span>
+
+<span class="p">{</span><span class="w">
+  </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x792b926B7183b62efFd58c69E2581D91Bce30d5A"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000000000000000"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/v1/account/withdraw'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'X-Verification-Code: {verification_code}'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
+    "toAddress": "0x792b926B7183b62efFd58c69E2581D91Bce30d5A",
+    "amount": "1000000000000000000"
+}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="dl">"</span><span class="s2">toAddress</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">0x792b926B7183b62efFd58c69E2581D91Bce30d5A</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">amount</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">1000000000000000000</span><span class="dl">"</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/account/withdraw</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">X-Verification-Code</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">{verification_code}</span><span class="dl">'</span><span class="p">,</span> 
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span> 
+    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="na">data</span> <span class="p">:</span> <span class="nx">data</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1127f829-60e7-4468-95d3-fe83df24abfb"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xbc8f7adbf515a3e3a88fa05fa9174b3f82b251ae1102a07bf04425d46a0d748e"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x792b926B7183b62efFd58c69E2581D91Bce30d5A"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000000000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-18T14:33:59.419Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+
+<p>GNI 토큰을 다른 지갑으로 전송합니다.</p>
+
+<p>오프체인 거래인 <code>transfer</code>와 달리 <code>withdraw</code>는 <strong>온체인 거래</strong>입니다. 따라서 트랜잭션을 생성하고 블록체인에 기록하는 데 시간이 걸립니다. 트랜잭션이 블록체인에 기록되면 <code>status</code> 필드가 <code>success</code>로 변경됩니다.</p>
+
+<p>GNI 토큰을 다른 지갑으로 전송할 때는 반드시 <a href="#get-transaction-fee">트랜잭션 수수료</a>를 고려해야 합니다. 사용자의 잔액을 초과하는 양을 전송하려고 하면 오류가 발생합니다.</p>
+
+<aside class="warning">
+수신측 지갑 주소가 올바른지 확인하세요. 올바르지 않은 주소로 전송하면 GNI 토큰을 되찾을 수 없습니다.
+</aside>
+
+<h3 id='http-request'>HTTP Request</h3>
+
+<p><code>POST /v1/account/withdraw</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li><code>user:account</code></li>
+</ul>
+
+<h3 id='request-header'>Request Header</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-Verification-Code</td>
+<td>true</td>
+<td>인증 코드</td>
+</tr>
+</tbody></table>
+
+<p><code>X-Verification-Code</code>는 <a href="#get-verification-code">인증 코드</a>를 사용합니다.</p>
+
+<h3 id='request-body'>Request Body</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>toAddress</td>
+<td>string</td>
+<td>true</td>
+<td>수신측 지갑 주소</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>true</td>
+<td>전송할 토큰의 양</td>
+</tr>
+</tbody></table>
+
+<p><code>amount</code>는 <code>string</code> 타입이며, 소수점 18자리로 표현합니다. 예를 들어, 1 GNI를 전송하려면 <code>1000000000000000000</code>을 입력합니다.</p>
+
+<h3 id='response-code'>Response Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Created</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-data'>Response Data</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>transactionId</td>
+<td>string</td>
+<td>트랜잭션 ID</td>
+</tr>
+<tr>
+<td>txHash</td>
+<td>string</td>
+<td>트랜잭션 해시</td>
+</tr>
+<tr>
+<td>fromAddress</td>
+<td>string</td>
+<td>송신측 지갑 주소</td>
+</tr>
+<tr>
+<td>toAddress</td>
+<td>string</td>
+<td>수신측 지갑 주소</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>string</td>
+<td>전송한 토큰의 양</td>
+</tr>
+<tr>
+<td>status</td>
+<td>object</td>
+<td>트랜잭션 상태</td>
+</tr>
+<tr>
+<td>status.type</td>
+<td>string</td>
+<td><code>pending</code> 또는 <code>success</code>, <code>failed</code></td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>string</td>
+<td>트랜잭션 생성 시각</td>
+</tr>
+</tbody></table>
+
+<p>마찬가지로 <code>amount</code>는 <code>string</code> 타입이며, 소수점 18자리로 표현합니다.</p>
+
+<h3 id='error-code'>Error Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
 <tr>
 <td>400</td>
 <td>INVALID_AMOUNT</td>
 <td>잘못된 거래량</td>
 </tr>
 <tr>
-<td>404</td>
-<td>NOT_FOUND_ACCOUNT</td>
-<td>수신측 지갑을 찾을 수 없음</td>
+<td>400</td>
+<td>CANNOT_SELF_TRANSFER</td>
+<td>자기 자신에게 전송할 수 없음</td>
+</tr>
+<tr>
+<td>400</td>
+<td>INVALID_VERIFICATION_CODE</td>
+<td>인증 코드가 올바르지 않음</td>
+</tr>
+<tr>
+<td>401</td>
+<td>VERIFICATION_CODE_UNAVAILABLE_OR_EXPIRED</td>
+<td>인증 절차를 진행하지 않았거나 만료 됨</td>
 </tr>
 <tr>
 <td>403</td>

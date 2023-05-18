@@ -48,8 +48,16 @@
 <p>Response</p>
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-    </span><span class="nl">"accessToken"</span><span class="p">:</span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4ODg4MTkzYTdmNGYzYmI3Y2E1M2JmYTAyMDZiZTU0YzplMGE0IiwiaWF0IjoxNjgzODU1Nzc4LCJleHAiOjE2ODM4NTc2Mzh9.yM2cSJlWkMJZhbbUcKmi9ih8BIMIchK6HsK2Cdrufxs"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"refreshToken"</span><span class="p">:</span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4N2E1YzY4NGIxOTZhYzQwOWM1OTIzZDNhYjVjZDQ5NzoyMTk0YjQ5Njg1MzJlMyIsImlhdCI6MTY4Mzg1NTc3OCwiZXhwIjoxNjgzODU3NjM4fQ.a7i9jWyCB81VZpLv3l8-ThSGRiJQQZ5drLJGOOhrIk8"</span><span class="w">
+  </span><span class="nl">"authentication"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"role"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"account"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"account"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"balance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"accessToken"</span><span class="p">:</span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4ODg4MTkzYTdmNGYzYmI3Y2E1M2JmYTAyMDZiZTU0YzplMGE0IiwiaWF0IjoxNjgzODU1Nzc4LCJleHAiOjE2ODM4NTc2Mzh9.yM2cSJlWkMJZhbbUcKmi9ih8BIMIchK6HsK2Cdrufxs"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"refreshToken"</span><span class="p">:</span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4N2E1YzY4NGIxOTZhYzQwOWM1OTIzZDNhYjVjZDQ5NzoyMTk0YjQ5Njg1MzJlMyIsImlhdCI6MTY4Mzg1NTc3OCwiZXhwIjoxNjgzODU3NjM4fQ.a7i9jWyCB81VZpLv3l8-ThSGRiJQQZ5drLJGOOhrIk8"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>사용자를 등록합니다.</p>
@@ -83,6 +91,21 @@
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>authentication.role.type</td>
+<td><code>string</code></td>
+<td>권한 종류</td>
+</tr>
+<tr>
+<td>account</td>
+<td><code>object</code></td>
+<td>계정 정보</td>
+</tr>
+<tr>
+<td>account.balance</td>
+<td><code>string</code></td>
+<td>GNI 소유량</td>
+</tr>
 <tr>
 <td>accessToken</td>
 <td><code>string</code></td>
