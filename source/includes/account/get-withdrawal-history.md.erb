@@ -3,13 +3,13 @@
 > Request
 
 ```http
-GET <%= config[:version] %>/account/withdrawal HTTP/1.1
+GET <%= config[:version] %>/history/withdrawal HTTP/1.1
 Host: <%= config[:host] %>
 Authorization: Bearer {access_token}
 ```
 
 ```shell
-curl --location '<%= config[:base_url] %>/account/withdrawal' \
+curl --location '<%= config[:base_url] %>/history/withdrawal' \
 --header 'Authorization: Bearer {access_token}'
 ```
 
@@ -73,7 +73,7 @@ axios.request(config)
 
 ### HTTP Request
 
-`GET <%= config[:version] %>/account/withdrawal`
+`GET <%= config[:version] %>/history/withdrawal`
 
 ### Scopes
 

@@ -3,13 +3,13 @@
 > Request
 
 ```http
-GET <%= config[:version] %>/account/deposit HTTP/1.1
+GET <%= config[:version] %>/history/deposit HTTP/1.1
 Host: <%= config[:host] %>
 Authorization: Bearer {access_token}
 ```
 
 ```shell
-curl --location '<%= config[:base_url] %>/account/deposit' \
+curl --location '<%= config[:base_url] %>/history/deposit' \
 --header 'Authorization: Bearer {access_token}'
 ```
 
@@ -73,7 +73,7 @@ axios.request(config)
 
 ### HTTP Request
 
-`GET <%= config[:version] %>/account/deposit`
+`GET <%= config[:version] %>/history/deposit`
 
 ### Scopes
 
