@@ -98,7 +98,7 @@
 </tr>
 <tr>
 <td>account</td>
-<td><code>object</code></td>
+<td><code>object</code> or <code>null</code></td>
 <td>계정 정보</td>
 </tr>
 <tr>
