@@ -44,20 +44,28 @@ let config = {
 };
 
 axios.request(config)
-.then((response) => {
-  console.log(JSON.stringify(response.data));
-})
-.catch((error) => {
-  console.log(error);
-});
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 ```
 
 > Response
 
 ```json
 {
-    "accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4ODg4MTkzYTdmNGYzYmI3Y2E1M2JmYTAyMDZiZTU0YzplMGE0IiwiaWF0IjoxNjgzODU1Nzc4LCJleHAiOjE2ODM4NTc2Mzh9.yM2cSJlWkMJZhbbUcKmi9ih8BIMIchK6HsK2Cdrufxs",
-    "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4N2E1YzY4NGIxOTZhYzQwOWM1OTIzZDNhYjVjZDQ5NzoyMTk0YjQ5Njg1MzJlMyIsImlhdCI6MTY4Mzg1NTc3OCwiZXhwIjoxNjgzODU3NjM4fQ.a7i9jWyCB81VZpLv3l8-ThSGRiJQQZ5drLJGOOhrIk8"
+  "authentication": {
+    "role": {
+        "type": "account"
+    }
+  },
+  "account": {
+    "balance": "0"
+  },
+  "accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4ODg4MTkzYTdmNGYzYmI3Y2E1M2JmYTAyMDZiZTU0YzplMGE0IiwiaWF0IjoxNjgzODU1Nzc4LCJleHAiOjE2ODM4NTc2Mzh9.yM2cSJlWkMJZhbbUcKmi9ih8BIMIchK6HsK2Cdrufxs",
+  "refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4N2E1YzY4NGIxOTZhYzQwOWM1OTIzZDNhYjVjZDQ5NzoyMTk0YjQ5Njg1MzJlMyIsImlhdCI6MTY4Mzg1NTc3OCwiZXhwIjoxNjgzODU3NjM4fQ.a7i9jWyCB81VZpLv3l8-ThSGRiJQQZ5drLJGOOhrIk8"
 }
 ```
 
@@ -94,8 +102,11 @@ E.164 포맷에 대한 자세한 내용은 [여기](http://www.ktword.co.kr/test
 
 | Parameter   | Type   | Description |
 | ----------- | ------ | ----------- |
+| authentication.role.type | `string` | 권한 종류 |
+| account | `object` | 계정 정보 |
+| account.balance | `string` | GNI 소유량 |
 | accessToken | `string` | 인증 토큰 |
-| refreshToken| `string` | 재발급 토큰 |
+| refreshToken | `string` | 재발급 토큰 |
 
 ### Error Code
 

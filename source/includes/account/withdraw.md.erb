@@ -1,0 +1,138 @@
+## Withdraw Funds
+
+> Request
+
+```http
+POST <%= config[:version] %>/account/withdraw HTTP/1.1
+Host: <%= config[:host] %>
+X-Verification-Code: {verification_code}
+Content-Type: application/json
+Authorization: Bearer {access_token}
+Content-Length: 102
+
+{
+  "toAddress": "0x792b926B7183b62efFd58c69E2581D91Bce30d5A",
+  "amount": "1000000000000000000"
+}
+```
+
+```shell
+curl --location '<%= config[:base_url] %>/account/withdraw' \
+--header 'X-Verification-Code: {verification_code}' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {access_token}' \
+--data '{
+    "toAddress": "0x792b926B7183b62efFd58c69E2581D91Bce30d5A",
+    "amount": "1000000000000000000"
+}'
+```
+
+```javascript
+const axios = require('axios');
+let data = JSON.stringify({
+  "toAddress": "0x792b926B7183b62efFd58c69E2581D91Bce30d5A",
+  "amount": "1000000000000000000"
+});
+
+let config = {
+  method: 'post',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/account/withdraw',
+  headers: { 
+    'X-Verification-Code': '{verification_code}', 
+    'Content-Type': 'application/json', 
+    'Authorization': 'Bearer {access_token}'
+  },
+  data : data
+};
+
+axios.request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+> Response
+
+```json
+{
+  "transactionId": "1127f829-60e7-4468-95d3-fe83df24abfb",
+  "txHash": "0xbc8f7adbf515a3e3a88fa05fa9174b3f82b251ae1102a07bf04425d46a0d748e",
+  "fromAddress": "0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D",
+  "toAddress": "0x792b926B7183b62efFd58c69E2581D91Bce30d5A",
+  "amount": "1000000000000000000",
+  "status": {
+      "type": "pending"
+  },
+  "createdAt": "2023-05-18T14:33:59.419Z"
+}
+```
+
+GNI 토큰을 다른 지갑으로 전송합니다.
+
+오프체인 거래인 `transfer`와 달리 `withdraw`는 **온체인 거래**입니다. 따라서 트랜잭션을 생성하고 블록체인에 기록하는 데 시간이 걸립니다. 트랜잭션이 블록체인에 기록되면 `status` 필드가 `success`로 변경됩니다.
+
+GNI 토큰을 다른 지갑으로 전송할 때는 반드시 <a href="#transaction-fee">트랜잭션 수수료</a>를 고려해야 합니다. 사용자의 잔액을 초과하는 양을 전송하려고 하면 오류가 발생합니다.
+
+<aside class="warning">
+수신측 지갑 주소가 올바른지 확인하세요. 올바르지 않은 주소로 전송하면 GNI 토큰을 되찾을 수 없습니다.
+</aside>
+
+### HTTP Request
+
+`POST <%= config[:version] %>/account/withdraw`
+
+### Scopes
+
+- `user:account`
+
+### Request Header
+
+| Parameter        | Required | Description |
+| ---------------- | -------- | ----------- |
+| X-Verification-Code  | true | 인증 코드 |
+
+`X-Verification-Code`는 <a href="#send-verification-code-withdrawal">인증 코드</a>를 사용합니다.
+
+### Request Body
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| toAddress | string | true | 수신측 지갑 주소 |
+| amount | string | true | 전송할 토큰의 양 |
+
+`amount`는 `string` 타입이며, 소수점 18자리로 표현합니다. 예를 들어, 1 GNI를 전송하려면 `1000000000000000000`을 입력합니다.
+
+### Response Code
+
+| Code | Message |
+| ---- | ------- |
+| 201 | Created |
+
+### Response Data
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| transactionId | string | 트랜잭션 ID |
+| txHash | string | 트랜잭션 해시 |
+| fromAddress | string | 송신측 지갑 주소 |
+| toAddress | string | 수신측 지갑 주소 |
+| amount | string | 전송한 토큰의 양 |
+| status | object | 트랜잭션 상태 |
+| status.type | string | `pending` 또는 `success`, `failed` |
+| createdAt | string | 트랜잭션 생성 시각 |
+
+마찬가지로 `amount`는 `string` 타입이며, 소수점 18자리로 표현합니다.
+
+### Error Code
+
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 400 | INVALID_AMOUNT | 잘못된 거래량 |
+| 400 | CANNOT_SELF_TRANSFER | 자기 자신에게 전송할 수 없음 |
+| 400 | INVALID_VERIFICATION_CODE | 인증 코드가 올바르지 않음 |
+| 401 | VERIFICATION_CODE_UNAVAILABLE_OR_EXPIRED | 인증 절차를 진행하지 않았거나 만료 됨 |
+| 403 | INSUFFICIENT_FUNDS | 잔액 부족 |
