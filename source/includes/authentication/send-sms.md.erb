@@ -6,23 +6,36 @@
 POST <%= config[:version] %>/auth/verification/send HTTP/1.1
 Host: <%= config[:host] %>
 Authorization: Bearer {access_token}
+Content-Length: 32
+
+{
+  "phone": "+821093814181"
+}
 ```
 
 ```shell
 curl --location --request POST '<%= config[:base_url] %>/auth/verification/send' \
 --header 'Authorization: Bearer {access_token}'
+--data '{
+    "phone": "+821093814181"
+}'
 ```
 
 ```javascript
 const axios = require('axios');
+let data = JSON.stringify({
+  "phone": "+821093814181"
+});
 
 let config = {
   method: 'post',
   maxBodyLength: Infinity,
   url: '<%= config[:base_url] %>/auth/verification/send',
   headers: { 
+    'Content-Type': 'application/json',
     'Authorization': 'Bearer {access_token}'
-  }
+  },
+  data: data
 };
 
 axios.request(config)
@@ -59,5 +72,4 @@ axios.request(config)
 
 | Code | Message | Description |
 | ---- | ------- | ----------- |
-| 400 | `INVALID_PHONE_NUMBER` | 유효하지 않은 전화번호 |
-| 401 | `Unauthorized` | 인증되지 않은 사용자입니다. |
+| 401 | `Unauthorized` | 미 로그인 상태 |
