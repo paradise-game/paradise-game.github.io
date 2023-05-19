@@ -1,0 +1,81 @@
+## Send Verification Code(Withdrawal)
+
+> Request
+
+```http
+POST <%= config[:version] %>/account/verification/send HTTP/1.1
+Host: <%= config[:host] %>
+Authorization: Bearer {access_token}
+```
+
+```shell
+curl --location --request POST '<%= config[:base_url] %>/account/verification/send' \
+--header 'Authorization: Bearer {access_token}'
+```
+
+```javascript
+const axios = require('axios');
+
+let config = {
+  method: 'post',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/account/verification/send',
+  headers: { 
+    'Authorization': 'Bearer {access_token}'
+  }
+};
+
+axios.request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+> Response
+
+```json
+{
+  "from": "+12705161696",
+  "to": "+821021004364",
+  "body": null,
+  "ttl": 300000,
+  "createdAt": "2023-05-19T00:30:13.270Z"
+}
+```
+
+사용자의 휴대폰 번호로 인증 코드를 전송합니다.
+
+전송된 인증 코드는 출금 요청 시 사용되며, 5분간 유효합니다.
+
+### HTTP Request
+
+`POST <%= config[:version] %>/account/verification/send`
+
+### Scopes
+
+- `user:account`
+
+### Response Code
+
+| Code | Message |
+| ---- | ------- |
+| 201 | Created |
+
+### Response Data
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| from | string | 발신자 번호 |
+| to | string | 수신자 번호 |
+| body | string | 발신 내용, 보안상 null 고정 |
+| ttl | number | 인증 코드 유효 시간 (ms) |
+| createdAt | string | 발송 시간 |
+
+### Error Code
+
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 409 | ALREADY_EXISTS_VERIFICATION | 이미 인증 코드가 발급된 경우 |

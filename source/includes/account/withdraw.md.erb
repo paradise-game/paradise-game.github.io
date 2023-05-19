@@ -1,4 +1,4 @@
-## Withdraw
+## Withdraw Funds
 
 > Request
 
@@ -75,7 +75,7 @@ GNI 토큰을 다른 지갑으로 전송합니다.
 
 오프체인 거래인 `transfer`와 달리 `withdraw`는 **온체인 거래**입니다. 따라서 트랜잭션을 생성하고 블록체인에 기록하는 데 시간이 걸립니다. 트랜잭션이 블록체인에 기록되면 `status` 필드가 `success`로 변경됩니다.
 
-GNI 토큰을 다른 지갑으로 전송할 때는 반드시 <a href="#get-transaction-fee">트랜잭션 수수료</a>를 고려해야 합니다. 사용자의 잔액을 초과하는 양을 전송하려고 하면 오류가 발생합니다.
+GNI 토큰을 다른 지갑으로 전송할 때는 반드시 <a href="#transaction-fee">트랜잭션 수수료</a>를 고려해야 합니다. 사용자의 잔액을 초과하는 양을 전송하려고 하면 오류가 발생합니다.
 
 <aside class="warning">
 수신측 지갑 주소가 올바른지 확인하세요. 올바르지 않은 주소로 전송하면 GNI 토큰을 되찾을 수 없습니다.
@@ -95,7 +95,7 @@ GNI 토큰을 다른 지갑으로 전송할 때는 반드시 <a href="#get-trans
 | ---------------- | -------- | ----------- |
 | X-Verification-Code  | true | 인증 코드 |
 
-`X-Verification-Code`는 <a href="#get-verification-code">인증 코드</a>를 사용합니다.
+`X-Verification-Code`는 <a href="#send-verification-code-withdrawal">인증 코드</a>를 사용합니다.
 
 ### Request Body
 
