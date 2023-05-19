@@ -332,6 +332,9 @@
                   <li>
                     <a href="#versioning" class="toc-h2 toc-link" data-title="Versioning">Versioning</a>
                   </li>
+                  <li>
+                    <a href="#transaction-fee" class="toc-h2 toc-link" data-title="Transaction Fee">Transaction Fee</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -522,6 +525,25 @@
 </code></pre></div>
 
 <p>The versioning of the API is based on the <a href="http://semver.org/">Semantic Versioning</a> specification.</p>
+
+<h2 id='transaction-fee'>Transaction Fee</h2>
+
+<p>트랜잭션 수수료는 블록체인에 트랜잭션을 생성하므로써 발생하는 비용을 의미합니다.</p>
+
+<p>Paradise API에서 제공하는 온체인 서비스는 다음과 같습니다.</p>
+
+<ul>
+<li><a href="#withdraw-funds">Withdraw Funds</a></li>
+</ul>
+
+<h3 id='withdraw-funds-api'>Withdraw Funds API</h3>
+
+<p>사용자가 지갑에 보유한 자산을 다른 지갑으로 전송하는 기능입니다. 이때 지갑에 보유한 자산은 트랜잭션 수수료를 지불할 만큼 충분한 양이어야 합니다.</p>
+
+<p>전송할 자산의 양에 따라 트랜잭션 수수료가 다르게 발생하며, 총 전송량에 1%가 수수료로 부과됩니다. 예를 들어, 100 GNI를 전송하려면 1 GNI가 수수료로 부과되어 총 101 GNI가 소모됩니다.</p>
+
+<div class="highlight"><pre class="highlight plaintext"><code>전송량(100 GNI) + 수수료(1 GNI) = 총 소모량(101 GNI)
+</code></pre></div>
 
 <h1 id='authorization-and-authentication'>AUTHORIZATION AND AUTHENTICATION</h1>
 
