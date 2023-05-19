@@ -1,0 +1,20 @@
+<h2 id='roles'>Roles</h2>
+<p>사용자 권한은 <code>anonymous</code>, <code>verified</code>, <code>account</code> 세 가지로 구분됩니다. 각각의 권한은 사용자의 인증 상태를 나타내며, 권한에 따라 사용할 수 있는 API가 달라집니다.</p>
+
+<p>해당 문서에서는 권한을 <strong>Scopes</strong>로 표기합니다. 각각의 권한은 <code>user:{role}</code> 형식으로 표기합니다.</p>
+
+<ul>
+<li><code>user:anonymous</code></li>
+<li><code>user:verified</code></li>
+<li><code>user:account</code></li>
+</ul>
+<h3 id='anonymous'>Anonymous</h3>
+<p>비인증 사용자는 <code>user:anonymous</code> 역할을 가집니다. 최초 가입 시 이 권한을 가지며, 이후 인증을 통해 <code>user:verified</code> 역할을 얻습니다.</p>
+<h3 id='verified'>Verified</h3>
+<p>인증된 사용자는 <code>user:verified</code> 역할을 가집니다. 가입 시 제공받은 핸드폰 번호를 통해 SMS 문자를 발송하고, 해당 문자에 포함된 인증 코드를 입력하여 인증을 진행합니다.</p>
+
+<p>인증된 사용자는 지갑을 생성하여 <code>user:account</code> 역할을 얻을 수 있습니다.</p>
+<h3 id='account'>Account</h3>
+<p>지갑 소유자는 계정 <code>user:account</code> 역할을 가집니다. 지갑을 생성하면 이 권한을 얻습니다.</p>
+
+<p>계정 역할은 생성된 지갑을 통해 토큰을 송금할 수 있습니다.</p>

@@ -1,4 +1,4 @@
-<h2 id='send-sms-code'>Send SMS Code</h2>
+<h2 id='send-verification-code'>Send Verification Code</h2>
 <blockquote>
 <p>Request</p>
 </blockquote>
@@ -19,15 +19,15 @@
 <span class="p">};</span>
 
 <span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="p">});</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
 
 </code></pre></div>
-<p>사용자에게 인증코드를 전송합니다.</p>
+<p>사용자의 휴대폰 번호로 인증코드를 전송합니다. 전송 된 인증코드는 5분간 유효합니다.</p>
 
 <p><code>Twilio API</code>를 이용해 인증코드를 전송합니다. 해당 API에 대한 자세한 내용은 <a href="https://www.twilio.com/docs/sms/send-messages">트윌로 공식 문서</a>를 참고하세요.</p>
 <h3 id='http-request'>HTTP Request</h3>

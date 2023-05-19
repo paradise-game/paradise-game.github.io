@@ -1,0 +1,11 @@
+<h2 id='request-methods'>Request Methods</h2>
+<p>As per RESTful design patterns, Paradise API implements following HTTP verbs:</p>
+
+<ul>
+<li><code>GET</code>: Read resources</li>
+<li><code>POST</code>: Create new resources</li>
+<li><code>PUT</code>: Modify existing resources</li>
+<li><code>DELETE</code>: Remove resources</li>
+</ul>
+
+<p>When making requests, arguments can be passed as params, form data or JSON with correct Content-Type header.</p>

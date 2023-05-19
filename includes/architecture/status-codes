@@ -1,0 +1,54 @@
+<h2 id='status-codes'>Status Codes</h2>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>Successful request</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td>New object saved</td>
+</tr>
+<tr>
+<td>204</td>
+<td>No content</td>
+<td>Object deleted</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>Returns JSON with the error message</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>Couldn&#39;t authenticate your request</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Invalid scope</td>
+<td>User hasn&#39;t authorized necessary scope</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>No such object</td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+<td>Object already exists</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>Something went wrong</td>
+</tr>
+</tbody></table>

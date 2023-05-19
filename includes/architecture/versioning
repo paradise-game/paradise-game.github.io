@@ -1,0 +1,9 @@
+<h2 id='versioning'>Versioning</h2>
+<p>The API is versioned using the URI of the request. The current version is <code>v1</code>. The version is specified in the URI as follows:</p>
+
+<blockquote>
+<p>URI Versioning</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>https://api.paradise.game/v1
+</code></pre></div>
+<p>The versioning of the API is based on the <a href="http://semver.org/">Semantic Versioning</a> specification.</p>

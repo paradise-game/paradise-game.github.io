@@ -436,7 +436,7 @@ GNI 소유량(balance)은 소수 자릿수(18=wei)를 반환합니다. 예를 �
 </tr>
 </tbody></table>
 
-<h2 id='withdraw'>Withdraw</h2>
+<h2 id='withdraw-funds'>Withdraw Funds</h2>
 
 <blockquote>
 <p>Request</p>
@@ -509,7 +509,7 @@ GNI 소유량(balance)은 소수 자릿수(18=wei)를 반환합니다. 예를 �
 
 <p>오프체인 거래인 <code>transfer</code>와 달리 <code>withdraw</code>는 <strong>온체인 거래</strong>입니다. 따라서 트랜잭션을 생성하고 블록체인에 기록하는 데 시간이 걸립니다. 트랜잭션이 블록체인에 기록되면 <code>status</code> 필드가 <code>success</code>로 변경됩니다.</p>
 
-<p>GNI 토큰을 다른 지갑으로 전송할 때는 반드시 <a href="#get-transaction-fee">트랜잭션 수수료</a>를 고려해야 합니다. 사용자의 잔액을 초과하는 양을 전송하려고 하면 오류가 발생합니다.</p>
+<p>GNI 토큰을 다른 지갑으로 전송할 때는 반드시 <a href="#transaction-fee">트랜잭션 수수료</a>를 고려해야 합니다. 사용자의 잔액을 초과하는 양을 전송하려고 하면 오류가 발생합니다.</p>
 
 <aside class="warning">
 수신측 지갑 주소가 올바른지 확인하세요. 올바르지 않은 주소로 전송하면 GNI 토큰을 되찾을 수 없습니다.
@@ -541,7 +541,7 @@ GNI 소유량(balance)은 소수 자릿수(18=wei)를 반환합니다. 예를 �
 </tr>
 </tbody></table>
 
-<p><code>X-Verification-Code</code>는 <a href="#get-verification-code">인증 코드</a>를 사용합니다.</p>
+<p><code>X-Verification-Code</code>는 <a href="#send-verification-code-withdrawal">인증 코드</a>를 사용합니다.</p>
 
 <h3 id='request-body'>Request Body</h3>
 
@@ -669,5 +669,129 @@ GNI 소유량(balance)은 소수 자릿수(18=wei)를 반환합니다. 예를 �
 <td>403</td>
 <td>INSUFFICIENT_FUNDS</td>
 <td>잔액 부족</td>
+</tr>
+</tbody></table>
+
+<h2 id='send-verification-code-withdrawal'>Send Verification Code(Withdrawal)</h2>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/v1/account/verification/send</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://api.paradise.game/v1/account/verification/send'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/account/verification/send</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+</code></pre></div>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+12705161696"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+821021004364"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"ttl"</span><span class="p">:</span><span class="w"> </span><span class="mi">300000</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-19T00:30:13.270Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+
+<p>사용자의 휴대폰 번호로 인증 코드를 전송합니다.</p>
+
+<p>전송된 인증 코드는 출금 요청 시 사용되며, 5분간 유효합니다.</p>
+
+<h3 id='http-request'>HTTP Request</h3>
+
+<p><code>POST /v1/account/verification/send</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li><code>user:account</code></li>
+</ul>
+
+<h3 id='response-code'>Response Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td>Created</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-data'>Response Data</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from</td>
+<td>string</td>
+<td>발신자 번호</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>수신자 번호</td>
+</tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>발신 내용, 보안상 null 고정</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>number</td>
+<td>인증 코드 유효 시간 (ms)</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>string</td>
+<td>발송 시간</td>
+</tr>
+</tbody></table>
+
+<h3 id='error-code'>Error Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>409</td>
+<td>ALREADY_EXISTS_VERIFICATION</td>
+<td>이미 인증 코드가 발급된 경우</td>
 </tr>
 </tbody></table>

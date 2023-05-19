@@ -129,31 +129,7 @@
 </tr>
 </tbody></table>
 
-<h3 id='role-type'>Role Type</h3>
-
-<p>권한 종류는 다음과 같습니다.</p>
-
-<table><thead>
-<tr>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>account</td>
-<td>계정 소유자</td>
-</tr>
-<tr>
-<td>verified</td>
-<td>인증된 사용자</td>
-</tr>
-<tr>
-<td>anonymous</td>
-<td>비인증 사용자</td>
-</tr>
-</tbody></table>
-
-<p><strong>계정 소유자</strong>는 지갑을 생성한 사용자를 의미합니다. 지갑 생성은 <code>verified</code> 권한을 요구합니다.</p>
+<p><code>authentication.role.type</code>은 <a href="#roles">권한 종류</a>를 참고하세요.</p>
 
 <h3 id='access-token'>Access Token</h3>
 
@@ -295,7 +271,7 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 </tr>
 </tbody></table>
 
-<h2 id='send-sms-code'>Send SMS Code</h2>
+<h2 id='send-verification-code'>Send Verification Code</h2>
 
 <blockquote>
 <p>Request</p>
@@ -318,16 +294,16 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 <span class="p">};</span>
 
 <span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="p">});</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
 
 </code></pre></div>
 
-<p>사용자에게 인증코드를 전송합니다.</p>
+<p>사용자의 휴대폰 번호로 인증코드를 전송합니다. 전송 된 인증코드는 5분간 유효합니다.</p>
 
 <p><code>Twilio API</code>를 이용해 인증코드를 전송합니다. 해당 API에 대한 자세한 내용은 <a href="https://www.twilio.com/docs/sms/send-messages">트윌로 공식 문서</a>를 참고하세요.</p>
 
@@ -371,7 +347,7 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 </tr>
 </tbody></table>
 
-<h2 id='verify-sms-code'>Verify SMS Code</h2>
+<h2 id='verify-code'>Verify Code</h2>
 
 <blockquote>
 <p>Request</p>
@@ -412,16 +388,16 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 <span class="p">};</span>
 
 <span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="p">});</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
 
 </code></pre></div>
 
-<p>사용자에게서 인증코드를 받아 검증합니다.</p>
+<p>사용자가 입력한 인증코드를 검증합니다.</p>
 
 <h3 id='http-request'>HTTP Request</h3>
 
@@ -432,6 +408,30 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 <ul>
 <li><code>user:anonymous</code></li>
 </ul>
+
+<h3 id='request-body'>Request Body</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td>true</td>
+<td>인증코드를 전송한 전화번호</td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>true</td>
+<td>사용자가 입력한 인증코드</td>
+</tr>
+</tbody></table>
 
 <h3 id='response-code'>Response Code</h3>
 
