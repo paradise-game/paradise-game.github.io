@@ -31,7 +31,7 @@
 
 <p><code>Twilio API</code>를 이용해 인증코드를 전송합니다. 해당 API에 대한 자세한 내용은 <a href="https://www.twilio.com/docs/sms/send-messages">트윌로 공식 문서</a>를 참고하세요.</p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>POST /v1/verification/send</code></p>
+<p><code>POST /v1/auth/verification/send</code></p>
 <h3 id='scopes'>SCOPES</h3>
 <ul>
 <li><code>user:anonymous</code></li>

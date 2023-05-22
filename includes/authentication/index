@@ -309,7 +309,7 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 
 <h3 id='http-request'>HTTP Request</h3>
 
-<p><code>POST /v1/verification/send</code></p>
+<p><code>POST /v1/auth/verification/send</code></p>
 
 <h3 id='scopes'>SCOPES</h3>
 
