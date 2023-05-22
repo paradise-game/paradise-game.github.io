@@ -60,14 +60,33 @@ axios.request(config)
 
 - `user:anonymous`
 
+### Request Body
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| phone | string | true | 인증코드를 전송할 전화번호 |
+
 ### Response Code 
 
 | Code | Description |
 | ---- | ----------- |
-| 204  | No Content  |
+| 200  | OK  |
+
+### Response Data
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| from | string | 인증코드를 전송한 전화번호 |
+| to | string | 인증코드를 받은 전화번호 |
+| body | string | 인증코드 |
+| ttl | number | 인증 코드 유효 시간 (ms) |
+| createdAt | string | 인증 코드 생성 시간 |
 
 ### Error Code
 
 | Code | Message | Description |
 | ---- | ------- | ----------- |
+| 400 | `INVALID_PHONE_NUMBER` | 잘못된 휴대폰 번호 |
+| 400 | `ALREADY_VERIFIED_PHONE` | 이미 인증된 휴대폰 번호 |
+| 400 | `ALREADY_EXISTS_VERIFICATION` | 이미 인증 코드가 발급된 경우 |
 | 401 | `Unauthorized` | 미 로그인 상태 |

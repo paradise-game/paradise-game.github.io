@@ -3,25 +3,27 @@
 > Request
 
 ```http
-POST <%= config[:version] %>/auth/verification/sms HTTP/1.1
+POST <%= config[:version] %>/auth/verification/check HTTP/1.1
 Host: <%= config[:host] %>
 Content-Type: application/json
 Authorization: Bearer {access_token}
-Content-Length: 54
+Content-Length: 79
 
 {
     "phone": "+821093814181",
-    "code": "111111"
+    "code": "111111",
+    "countryCode": "KR"
 }
 ```
 
 ```shell
-curl --location '<%= config[:base_url] %>/auth/verification/sms ' \
+curl --location '<%= config[:base_url] %>/auth/verification/check ' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Bearer {access_token}' \
 --data '{
     "phone": "+821093814181",
-    "code": "111111"
+    "code": "111111",
+    "countryCode": "KR"
 }'
 ```
 
@@ -29,13 +31,14 @@ curl --location '<%= config[:base_url] %>/auth/verification/sms ' \
 const axios = require('axios');
 let data = JSON.stringify({
   "phone": "+821093814181",
-  "code": "111111"
+  "code": "111111",
+  "countryCode": "KR"
 });
 
 let config = {
   method: 'post',
   maxBodyLength: Infinity,
-  url: '<%= config[:base_url] %>/auth/verification/sms',
+  url: '<%= config[:base_url] %>/auth/verification/check',
   headers: { 
     'Content-Type': 'application/json', 
     'Authorization': 'Bearer {access_token}'
@@ -55,9 +58,13 @@ axios.request(config)
 
 사용자에게서 인증 코드를 받아 검증합니다.
 
+회원가입할 때 사용자가 전화번호를 잘못 입력한 경우, 해당 `phone` 값으로 인증 코드를 전송할 수 있으며, 이 때 `countryCode`를 함께 전송해야 합니다.
+
+인증이 완료되면 기존 `phone`과 `countryCode`는 새로 입력된 `phone`과 `countryCode`로 대체됩니다.
+
 ### HTTP Request
 
-`POST <%= config[:version] %>/auth/verification/sms`
+`POST <%= config[:version] %>/auth/verification/check`
 
 ### Scopes
 
@@ -69,12 +76,18 @@ axios.request(config)
 | --------- | ---- | -------- | ----------- |
 | phone | string | true | 인증코드를 전송한 전화번호 |
 | code | string | true | 사용자가 입력한 인증코드 |
+| countryCode | string | true | 국가코드 |
 
 ### Response Code
 
 | Code | Description |
 | ---- | ----------- |
-| 204  | No Content  |
+| 200  | OK  |
+
+### Response Data
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| success | boolean | 인증 성공 여부 |
 
 ### Error Code
 
