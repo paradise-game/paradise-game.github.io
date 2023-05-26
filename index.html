@@ -347,6 +347,12 @@
                     <a href="#refresh-token" class="toc-h2 toc-link" data-title="Refresh Token">Refresh Token</a>
                   </li>
                   <li>
+                    <a href="#send-pw-change-sms-code" class="toc-h2 toc-link" data-title="Send PW Change SMS Code">Send PW Change SMS Code</a>
+                  </li>
+                  <li>
+                    <a href="#verify-pw-change-sms-code" class="toc-h2 toc-link" data-title="Verify PW Change SMS Code">Verify PW Change SMS Code</a>
+                  </li>
+                  <li>
                     <a href="#send-verification-code" class="toc-h2 toc-link" data-title="Send Verification Code">Send Verification Code</a>
                   </li>
                   <li>
@@ -388,6 +394,17 @@
                   </li>
                   <li>
                     <a href="#send-verification-code-withdrawal" class="toc-h2 toc-link" data-title="Send Verification Code(Withdrawal)">Send Verification Code(Withdrawal)</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#history" class="toc-h1 toc-link" data-title="HISTORY">HISTORY</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-withdrawal-history" class="toc-h2 toc-link" data-title="Get Withdrawal History">Get Withdrawal History</a>
+                  </li>
+                  <li>
+                    <a href="#get-deposit-history" class="toc-h2 toc-link" data-title="Get Deposit History">Get Deposit History</a>
                   </li>
               </ul>
           </li>
@@ -819,51 +836,77 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 </tr>
 </tbody></table>
 
-<h2 id='send-verification-code'>Send Verification Code</h2>
+<h2 id='send-pw-change-sms-code'>Send PW Change SMS Code</h2>
 
 <blockquote>
 <p>Request</p>
 </blockquote>
 
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/v1/auth/verification/send</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/v1/auth/verification/password/send</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
-<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://api.paradise.game/v1/auth/verification/send'</span> <span class="se">\</span>
-<span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">32</span>
+<span class="s">{</span>
+<span class="s">    "phone": "+821093814181"</span>
+<span class="s">}</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://api.paradise.game/v1/auth/verification/password/send'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
+    "phone": "+821093814181"
+}'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="dl">"</span><span class="s2">phone</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">+821093814181</span><span class="dl">"</span>
+<span class="p">});</span>
 
 <span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
-  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/auth/verification/send</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/auth/verification/password/send</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
-    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
-  <span class="p">}</span>
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="na">data</span> <span class="p">:</span> <span class="nx">data</span>
 <span class="p">};</span>
 
 <span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
-  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
-  <span class="p">})</span>
-  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-  <span class="p">});</span>
-
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
 </code></pre></div>
 
-<p>사용자의 휴대폰 번호로 인증코드를 전송합니다. 전송 된 인증코드는 5분간 유효합니다.</p>
-
-<p><code>Twilio API</code>를 이용해 인증코드를 전송합니다. 해당 API에 대한 자세한 내용은 <a href="https://www.twilio.com/docs/sms/send-messages">트윌로 공식 문서</a>를 참고하세요.</p>
+<p>사용자의 비밀번호를 찾기 위해 SMS 인증 코드를 전송합니다.</p>
 
 <h3 id='http-request'>HTTP Request</h3>
 
-<p><code>POST /v1/auth/verification/send</code></p>
+<p><code>POST /v1/auth/verification/password/send</code></p>
 
-<h3 id='scopes'>SCOPES</h3>
+<h3 id='scopes'>Scopes</h3>
 
 <ul>
-<li><code>user:anonymous</code></li>
+<li>No permission required</li>
 </ul>
+
+<h3 id='request-body'>Request Body</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td>true</td>
+<td>인증코드를 전송할 전화번호</td>
+</tr>
+</tbody></table>
 
 <h3 id='response-code'>Response Code</h3>
 
@@ -874,8 +917,44 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 </tr>
 </thead><tbody>
 <tr>
-<td>204</td>
-<td>No Content</td>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-data'>Response Data</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from</td>
+<td>string</td>
+<td>인증코드를 전송한 전화번호</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>인증코드를 받은 전화번호</td>
+</tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>인증코드</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>number</td>
+<td>인증 코드 유효 시간 (ms)</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>string</td>
+<td>인증 코드 생성 시간</td>
 </tr>
 </tbody></table>
 
@@ -889,9 +968,336 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 </tr>
 </thead><tbody>
 <tr>
+<td>400</td>
+<td><code>INVALID_PHONE_NUMBER</code></td>
+<td>유효하지 않은 전화번호</td>
+</tr>
+<tr>
+<td>404</td>
+<td><code>NOT_FOUND_USER</code></td>
+<td>사용자를 찾을 수 없음</td>
+</tr>
+</tbody></table>
+
+<h2 id='verify-pw-change-sms-code'>Verify PW Change SMS Code</h2>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">/v1/auth/verification/password/check</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">84</span>
+
+<span class="p">{</span><span class="w">
+    </span><span class="nl">"phone"</span><span class="p">:</span><span class="s2">"+821093814181"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"382659"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"!Qhdans0319"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PATCH <span class="s1">'https://api.paradise.game/v1/auth/verification/password/check'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
+<span class="nt">--data</span> <span class="s1">'{
+    "phone":"+821093814181",
+    "code": "382659",
+    "password": "!Qhdans0319"
+}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="dl">"</span><span class="s2">phone</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">+821093814181</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">382659</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">password</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">!Qhdans0319</span><span class="dl">"</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">PATCH</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/auth/verification/password/check</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="na">data</span> <span class="p">:</span> <span class="nx">data</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>SMS 인증 코드를 받아 검증합니다.</p>
+
+<p>검증에 성공할 경우, 기존 사용자의 비밀번호는 새롭게 암호화된 <code>password</code>로 변경됩니다. </p>
+
+<h3 id='http-request'>HTTP Request</h3>
+
+<p><code>PATCH /v1/auth/verification/password/check</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li>No permission required</li>
+</ul>
+
+<h3 id='request-body'>Request Body</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td>true</td>
+<td>인증코드를 전송한 전화번호</td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>true</td>
+<td>사용자가 입력한 인증코드</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>true</td>
+<td>비밀번호</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-code'>Response Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-data'>Response Data</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>인증 성공 여부</td>
+</tr>
+</tbody></table>
+
+<h3 id='error-code'>Error Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td><code>SAME_PASSWORD</code></td>
+<td>이전 비밀번호와 동일함</td>
+</tr>
+<tr>
+<td>400</td>
+<td><code>INVALID_PASSWORD</code></td>
+<td>유효하지 않은 비밀번호</td>
+</tr>
+<tr>
+<td>400</td>
+<td><code>INVALID_PHONE_NUMBER</code></td>
+<td>유효하지 않은 전화번호</td>
+</tr>
+<tr>
+<td>400</td>
+<td><code>INVALID_VERIFICATION_CODE</code></td>
+<td>유효하지 않은 인증 코드</td>
+</tr>
+<tr>
+<td>401</td>
+<td><code>VERIFICATION_CODE_UNAVAILABLE_OR_EXPIRED</code></td>
+<td>인증 코드가 만료되었거나 유효하지 않음</td>
+</tr>
+<tr>
+<td>404</td>
+<td><code>NOT_FOUND_USER</code></td>
+<td>사용자를 찾을 수 없음</td>
+</tr>
+</tbody></table>
+
+<h2 id='send-verification-code'>Send Verification Code</h2>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/v1/auth/verification/send</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">32</span>
+
+{
+  "phone": "+821093814181"
+}
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://api.paradise.game/v1/auth/verification/send'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span>
+<span class="nt">--data</span> <span class="s1">'{
+    "phone": "+821093814181"
+}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="dl">"</span><span class="s2">phone</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">+821093814181</span><span class="dl">"</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/auth/verification/send</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="na">data</span><span class="p">:</span> <span class="nx">data</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
+
+</code></pre></div>
+
+<p>사용자의 휴대폰 번호로 인증 코드를 전송합니다. 전송 된 인증 코드는 5분간 유효합니다.</p>
+
+<p><code>Twilio API</code>를 이용해 인증 코드를 전송합니다. 해당 API에 대한 자세한 내용은 <a href="https://www.twilio.com/docs/sms/send-messages">트윌로 공식 문서</a>를 참고하세요.</p>
+
+<h3 id='http-request'>HTTP Request</h3>
+
+<p><code>POST /v1/auth/verification/send</code></p>
+
+<h3 id='scopes'>SCOPES</h3>
+
+<ul>
+<li><code>user:anonymous</code></li>
+</ul>
+
+<h3 id='request-body'>Request Body</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>phone</td>
+<td>string</td>
+<td>true</td>
+<td>인증코드를 전송할 전화번호</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-code'>Response Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-data'>Response Data</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from</td>
+<td>string</td>
+<td>인증코드를 전송한 전화번호</td>
+</tr>
+<tr>
+<td>to</td>
+<td>string</td>
+<td>인증코드를 받은 전화번호</td>
+</tr>
+<tr>
+<td>body</td>
+<td>string</td>
+<td>인증코드</td>
+</tr>
+<tr>
+<td>ttl</td>
+<td>number</td>
+<td>인증 코드 유효 시간 (ms)</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td>string</td>
+<td>인증 코드 생성 시간</td>
+</tr>
+</tbody></table>
+
+<h3 id='error-code'>Error Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td><code>INVALID_PHONE_NUMBER</code></td>
+<td>잘못된 휴대폰 번호</td>
+</tr>
+<tr>
+<td>400</td>
+<td><code>ALREADY_VERIFIED_PHONE</code></td>
+<td>이미 인증된 휴대폰 번호</td>
+</tr>
+<tr>
+<td>400</td>
+<td><code>ALREADY_EXISTS_VERIFICATION</code></td>
+<td>이미 인증 코드가 발급된 경우</td>
+</tr>
+<tr>
 <td>401</td>
 <td><code>Unauthorized</code></td>
-<td>인증되지 않은 사용자입니다.</td>
+<td>미 로그인 상태</td>
 </tr>
 </tbody></table>
 
@@ -901,33 +1307,36 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 <p>Request</p>
 </blockquote>
 
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/v1/auth/verification/sms</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/v1/auth/verification/check</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
-<span class="na">Content-Length</span><span class="p">:</span> <span class="s">54</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">79</span>
 
 <span class="p">{</span><span class="w">
     </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+821093814181"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111111"</span><span class="w">
+    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111111"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"countryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KR"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/v1/auth/verification/sms '</span> <span class="se">\</span>
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/v1/auth/verification/check '</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span> <span class="se">\</span>
 <span class="nt">--data</span> <span class="s1">'{
     "phone": "+821093814181",
-    "code": "111111"
+    "code": "111111",
+    "countryCode": "KR"
 }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
   <span class="dl">"</span><span class="s2">phone</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">+821093814181</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">111111</span><span class="dl">"</span>
+  <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">111111</span><span class="dl">"</span><span class="p">,</span>
+  <span class="dl">"</span><span class="s2">countryCode</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">KR</span><span class="dl">"</span>
 <span class="p">});</span>
 
 <span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
-  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/auth/verification/sms</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/auth/verification/check</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
     <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span> 
     <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
@@ -945,11 +1354,15 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 
 </code></pre></div>
 
-<p>사용자가 입력한 인증코드를 검증합니다.</p>
+<p>사용자에게서 인증 코드를 받아 검증합니다.</p>
+
+<p>회원가입할 때 사용자가 전화번호를 잘못 입력한 경우, 해당 <code>phone</code> 값으로 인증 코드를 전송할 수 있으며, 이 때 <code>countryCode</code>를 함께 전송해야 합니다.</p>
+
+<p>인증이 완료되면 기존 <code>phone</code>과 <code>countryCode</code>는 새로 입력된 <code>phone</code>과 <code>countryCode</code>로 대체됩니다.</p>
 
 <h3 id='http-request'>HTTP Request</h3>
 
-<p><code>POST /v1/verification/sms</code></p>
+<p><code>POST /v1/auth/verification/check</code></p>
 
 <h3 id='scopes'>Scopes</h3>
 
@@ -979,6 +1392,12 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 <td>true</td>
 <td>사용자가 입력한 인증코드</td>
 </tr>
+<tr>
+<td>countryCode</td>
+<td>string</td>
+<td>true</td>
+<td>국가코드</td>
+</tr>
 </tbody></table>
 
 <h3 id='response-code'>Response Code</h3>
@@ -990,8 +1409,24 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 </tr>
 </thead><tbody>
 <tr>
-<td>204</td>
-<td>No Content</td>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-data'>Response Data</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td>boolean</td>
+<td>인증 성공 여부</td>
 </tr>
 </tbody></table>
 
@@ -1012,12 +1447,12 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 <tr>
 <td>400</td>
 <td><code>INVALID_VERIFICATION_CODE</code></td>
-<td>유효하지 않은 인증코드</td>
+<td>유효하지 않은 인증 코드</td>
 </tr>
 <tr>
 <td>401</td>
 <td><code>VERIFICATION_CODE_UNAVAILABLE_OR_EXPIRED</code></td>
-<td>인증코드가 존재하지 않거나 만료됨</td>
+<td>인증 코드가 존재하지 않거나 만료됨</td>
 </tr>
 </tbody></table>
 
@@ -1090,7 +1525,13 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 
-<p>사용자를 등록합니다.</p>
+<p>사용자 회원가입을 진행합니다.</p>
+
+<p>사용자 회원가입에는 본인의 전화번호인 <code>phone</code>, 비밀번호인 <code>password</code>, 이름인 <code>nickname</code>을 필요로 하며,</p>
+
+<p><code>phone</code>의 경우 국제 표준 표기법 E.164 형식에 맞는 전화번호를 사용하고 있습니다.</p>
+
+<p>E.164 포맷에 대한 자세한 내용은 <a href="http://www.ktword.co.kr/test/view/view.php?m_temp1=1970">여기</a>를 참고하세요.</p>
 
 <aside class="notice">
 비밀번호는 영어 대소문자, 숫자, 특수문자를 포함해 8자 이상으로 구성되어야 합니다.
@@ -1463,6 +1904,12 @@ accessToken은 31분 동안 유효 합니다. refreshToken은 7일 동안 유효
 </code></pre></div>
 
 <p>사용자의 비밀번호를 변경합니다.</p>
+
+<p>사용자의 비밀번호를 변경할 때는 현재 비밀번호인 <code>currentPassword</code>와 변경할 비밀번호인 <code>password</code>를 함께 전송해야 합니다.</p>
+
+<p><code>password</code>의 정규식은 다음과 같습니다.</p>
+
+<p><code>/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_])[A-Za-z\d\W_]{8,}$/</code></p>
 
 <aside class="notice">
 변경하는 비밀번호는 영어 대소문자, 숫자, 특수문자를 포함해 8자 이상으로 구성되어야 합니다.
@@ -2333,6 +2780,266 @@ GNI 소유량(balance)은 소수 자릿수(18=wei)를 반환합니다. 예를 �
 <td>409</td>
 <td>ALREADY_EXISTS_VERIFICATION</td>
 <td>이미 인증 코드가 발급된 경우</td>
+</tr>
+</tbody></table>
+
+<h1 id='history'>HISTORY</h1>
+
+<h2 id='get-withdrawal-history'>Get Withdrawal History</h2>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/v1/history/withdrawal</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/v1/history/withdrawal'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/auth/withdrawal</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:28:11.124Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:28:56.756Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:33:16.169Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T08:26:20.584Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+
+<p>사용자의 전체 출금 내역을 조회합니다.</p>
+
+<h3 id='http-request'>HTTP Request</h3>
+
+<p><code>GET /v1/history/withdrawal</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li><code>user:account</code></li>
+</ul>
+
+<h3 id='response-code'>Response Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-data'>Response Data</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fromAddress</td>
+<td><code>string</code></td>
+<td>출금 주소</td>
+</tr>
+<tr>
+<td>toAddress</td>
+<td><code>string</code></td>
+<td>입금 주소</td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>string</code></td>
+<td>입금 수량</td>
+</tr>
+<tr>
+<td>fee</td>
+<td><code>string</code></td>
+<td>입금 수수료</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td><code>string</code></td>
+<td>트랜잭션 발생 시간</td>
+</tr>
+</tbody></table>
+
+<h2 id='get-deposit-history'>Get Deposit History</h2>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/v1/history/deposit</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/v1/history/deposit'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/auth/deposit</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:28:11.124Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:28:56.756Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:33:16.169Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T08:26:20.584Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+
+<p>사용자의 전체 입금 내역을 조회합니다.</p>
+
+<h3 id='http-request'>HTTP Request</h3>
+
+<p><code>GET /v1/history/deposit</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li><code>user:account</code></li>
+</ul>
+
+<h3 id='response-code'>Response Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-data'>Response Data</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fromAddress</td>
+<td><code>string</code></td>
+<td>출금 주소</td>
+</tr>
+<tr>
+<td>toAddress</td>
+<td><code>string</code></td>
+<td>입금 주소</td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>string</code></td>
+<td>입금 수량</td>
+</tr>
+<tr>
+<td>fee</td>
+<td><code>string</code></td>
+<td>입금 수수료</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td><code>string</code></td>
+<td>트랜잭션 발생 시간</td>
 </tr>
 </tbody></table>
 
