@@ -6,23 +6,36 @@
 POST <%= config[:version] %>/auth/verification/send HTTP/1.1
 Host: <%= config[:host] %>
 Authorization: Bearer {access_token}
+Content-Length: 32
+
+{
+  "phone": "+821093814181"
+}
 ```
 
 ```shell
 curl --location --request POST '<%= config[:base_url] %>/auth/verification/send' \
 --header 'Authorization: Bearer {access_token}'
+--data '{
+    "phone": "+821093814181"
+}'
 ```
 
 ```javascript
 const axios = require('axios');
+let data = JSON.stringify({
+  "phone": "+821093814181"
+});
 
 let config = {
   method: 'post',
   maxBodyLength: Infinity,
   url: '<%= config[:base_url] %>/auth/verification/send',
   headers: { 
+    'Content-Type': 'application/json',
     'Authorization': 'Bearer {access_token}'
-  }
+  },
+  data: data
 };
 
 axios.request(config)
@@ -35,9 +48,9 @@ axios.request(config)
 
 ```
 
-사용자의 휴대폰 번호로 인증코드를 전송합니다. 전송 된 인증코드는 5분간 유효합니다.
+사용자의 휴대폰 번호로 인증 코드를 전송합니다. 전송 된 인증 코드는 5분간 유효합니다.
 
-`Twilio API`를 이용해 인증코드를 전송합니다. 해당 API에 대한 자세한 내용은 [트윌로 공식 문서](https://www.twilio.com/docs/sms/send-messages)를 참고하세요.
+`Twilio API`를 이용해 인증 코드를 전송합니다. 해당 API에 대한 자세한 내용은 [트윌로 공식 문서](https://www.twilio.com/docs/sms/send-messages)를 참고하세요.
 
 ### HTTP Request
 
@@ -47,14 +60,33 @@ axios.request(config)
 
 - `user:anonymous`
 
+### Request Body
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| phone | string | true | 인증코드를 전송할 전화번호 |
+
 ### Response Code 
 
 | Code | Description |
 | ---- | ----------- |
-| 204  | No Content  |
+| 200  | OK  |
+
+### Response Data
+
+| Parameter | Type | Description |
+| --------- | ---- | ----------- |
+| from | string | 인증코드를 전송한 전화번호 |
+| to | string | 인증코드를 받은 전화번호 |
+| body | string | 인증코드 |
+| ttl | number | 인증 코드 유효 시간 (ms) |
+| createdAt | string | 인증 코드 생성 시간 |
 
 ### Error Code
 
 | Code | Message | Description |
 | ---- | ------- | ----------- |
-| 401 | `Unauthorized` | 인증되지 않은 사용자입니다. |
+| 400 | `INVALID_PHONE_NUMBER` | 잘못된 휴대폰 번호 |
+| 400 | `ALREADY_VERIFIED_PHONE` | 이미 인증된 휴대폰 번호 |
+| 400 | `ALREADY_EXISTS_VERIFICATION` | 이미 인증 코드가 발급된 경우 |
+| 401 | `Unauthorized` | 미 로그인 상태 |
