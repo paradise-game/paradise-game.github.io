@@ -1,0 +1,549 @@
+<h1 id='notification'>NOTIFICATION</h1>
+<h2 id='get-notification-list'>Get Notification List</h2>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">POST /v1/notification
+Host: api.paradise.game
+Authorization: Bearer {access_token}
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://api.paradise.game/v1/notification \
+--header '</span>Authorization: Bearer <span class="o">{</span>access_token<span class="o">}</span><span class="s1">' \
+</span></code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">post</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/notification</span><span class="dl">'</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
+  <span class="p">},</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646c5a2202377e97f20689b1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposited GNI(Genie) 0.0000000000000012"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From 0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isRead"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-23T06:16:02.453Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646c5a2702377e97f20689b2"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposited GNI(Genie) 0.000000000123502"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From 0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isRead"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-23T06:16:07.339Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646d7d31266f24be299b04ee"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1 GNI(Genie) Withdrawal Succeed"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Txn Hash: 0x9fdc0870d85ba118ffc18015e5fdf411af6a240338b29301a266896e5c0f5e6e"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isRead"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-24T02:57:53.466Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646d8d39266f24be299b04ef"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1 GNI(Genie) Withdrawal Succeed"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Txn Hash: 0x3edb1b8049419dae366f266aafb95a173caccb29b82b381c0a254186a10f2003"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isRead"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-24T04:06:17.010Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646d8d45266f24be299b04f0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1 GNI(Genie) Withdrawal Succeed"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Txn Hash: 0x5df29276392adb6a61f4b567961c7a6583871e329edb49b0de4f7028c90a86c1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isRead"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-24T04:06:29.689Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+
+<p>사용자에게 발송된 푸시 알림 목록을 반환합니다.</p>
+
+<h3 id='http-request'>HTTP Request</h3>
+
+<p><code>GET /v1/notification</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li><code>user:anonymous</code></li>
+</ul>
+
+<h3 id='response-code'>Response Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-data'>Response Data</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>string</code></td>
+<td>푸시 알림 고유 ID</td>
+</tr>
+<tr>
+<td>title</td>
+<td><code>string</code></td>
+<td>푸시 알림 제목</td>
+</tr>
+<tr>
+<td>body</td>
+<td><code>string</code></td>
+<td>푸시 알림 내용</td>
+</tr>
+<tr>
+<td>isRead</td>
+<td><code>boolean</code></td>
+<td>푸시 알림 읽음 여부</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td><code>string</code></td>
+<td>푸시 알림 발송 시간</td>
+</tr>
+</tbody></table>
+
+<h3 id='error-code'>Error Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td><code>Unauthorized</code></td>
+<td>미 로그인 상태</td>
+</tr>
+</tbody></table>
+
+<h2 id='read-notification'>Read notification</h2>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">PATCH /v1/notification/read
+Host: api.paradise.game
+Authorization: Bearer {access_token}
+Content-Length: 40
+
+{
+    "id": "646c58559bea92ec60f2bcf3"
+}
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PATCH <span class="s1">'https://api.paradise.game/v1/notification/read \
+--header '</span>Content-Type: application/json<span class="s1">' \
+--header '</span>Authorization: Bearer <span class="o">{</span>access_token<span class="o">}</span><span class="s1">' \
+--data '</span><span class="o">{</span>
+    <span class="s2">"id"</span>: <span class="s2">"646c58559bea92ec60f2bcf3"</span>
+<span class="o">}</span><span class="s1">'
+</span></code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">646c58559bea92ec60f2bcf3</span><span class="dl">"</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">patch</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/notification/read</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="na">data</span> <span class="p">:</span> <span class="nx">data</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646c5a2202377e97f20689b1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposited GNI(Genie) 0.0000000000000012"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From 0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isRead"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-23T06:16:02.453Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+
+<p>사용자에게 발송된 푸시 알림의 읽음 여부를 변경합니다.</p>
+
+<h3 id='http-request'>HTTP Request</h3>
+
+<p><code>PATCH /v1/notification/read</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li><code>user:anonymous</code></li>
+</ul>
+
+<h3 id='response-code'>Response Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-data'>Response Data</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>string</code></td>
+<td>푸시 알림 ID</td>
+</tr>
+<tr>
+<td>title</td>
+<td><code>string</code></td>
+<td>푸시 알림 제목</td>
+</tr>
+<tr>
+<td>body</td>
+<td><code>string</code></td>
+<td>푸시 알림 내용</td>
+</tr>
+<tr>
+<td>isRead</td>
+<td><code>boolean</code></td>
+<td>푸시 알림 읽음 여부</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td><code>string</code></td>
+<td>푸시 알림 생성 시간</td>
+</tr>
+</tbody></table>
+
+<h3 id='error-code'>Error Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td><code>INVALID_NOTIFICATION_ID</code></td>
+<td>유효하지 않은 알림 ID</td>
+</tr>
+<tr>
+<td>401</td>
+<td><code>Unauthorized</code></td>
+<td>미 로그인 상태</td>
+</tr>
+<tr>
+<td>404</td>
+<td><code>NOTIFICATION_NOT_FOUND</code></td>
+<td>해당 알림이 존재하지 않음</td>
+</tr>
+</tbody></table>
+
+<h2 id='read-all-notifications'>Read All Notifications</h2>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">PATCH /v1/notification/read/all
+Host: api.paradise.game
+Authorization: Bearer {access_token}
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PATCH <span class="s1">'https://api.paradise.game/v1/notification/read/all \
+--header '</span>Authorization: Bearer <span class="o">{</span>access_token<span class="o">}</span><span class="s1">' \
+</span></code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">patch</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/notification/read/all</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<blockquote>
+<p>Response</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646c5a2202377e97f20689b1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposited GNI(Genie) 0.0000000000000012"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From 0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isRead"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-23T06:16:02.453Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646c5a2702377e97f20689b2"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposited GNI(Genie) 0.000000000123502"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From 0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isRead"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-23T06:16:07.339Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646d7d31266f24be299b04ee"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1 GNI(Genie) Withdrawal Succeed"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Txn Hash: 0x9fdc0870d85ba118ffc18015e5fdf411af6a240338b29301a266896e5c0f5e6e"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isRead"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-24T02:57:53.466Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646d8d39266f24be299b04ef"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1 GNI(Genie) Withdrawal Succeed"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Txn Hash: 0x3edb1b8049419dae366f266aafb95a173caccb29b82b381c0a254186a10f2003"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isRead"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-24T04:06:17.010Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646d8d45266f24be299b04f0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1 GNI(Genie) Withdrawal Succeed"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Txn Hash: 0x5df29276392adb6a61f4b567961c7a6583871e329edb49b0de4f7028c90a86c1"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"isRead"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-24T04:06:29.689Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+
+<p>사용자에게 발송된 전체 푸시 알림의 읽음 여부를 변경합니다.</p>
+
+<h3 id='http-request'>HTTP Request</h3>
+
+<p><code>PATCH /v1/notification/read/all</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li><code>user:anonymous</code></li>
+</ul>
+
+<h3 id='response-code'>Response Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+
+<h3 id='response-data'>Response Data</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>string</code></td>
+<td>푸시 알림 ID</td>
+</tr>
+<tr>
+<td>title</td>
+<td><code>string</code></td>
+<td>푸시 알림 제목</td>
+</tr>
+<tr>
+<td>body</td>
+<td><code>string</code></td>
+<td>푸시 알림 내용</td>
+</tr>
+<tr>
+<td>isRead</td>
+<td><code>boolean</code></td>
+<td>푸시 알림 읽음 여부</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td><code>string</code></td>
+<td>푸시 알림 생성 시간</td>
+</tr>
+</tbody></table>
+
+<h3 id='error-code'>Error Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>401</td>
+<td><code>Unauthorized</code></td>
+<td>미 로그인 상태</td>
+</tr>
+</tbody></table>
+
+<h2 id='remove-notification'>Remove Notification</h2>
+
+<blockquote>
+<p>Request</p>
+</blockquote>
+
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">DELETE /v1/notification
+Host: api.paradise.game
+Authorization: Bearer {access_token}
+Content-Length: 40
+
+{
+    "id": "646c58559bea92ec60f2bcf3"
+}
+</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> DELETE <span class="s1">'https://api.paradise.game/v1/notification
+--header '</span>Content-Type: application/json<span class="s1">' \
+--header '</span>Authorization: Bearer <span class="o">{</span>access_token<span class="o">}</span><span class="s1">' \
+--data '</span><span class="o">{</span>
+    <span class="s2">"id"</span>: <span class="s2">"646c58559bea92ec60f2bcf3"</span>
+<span class="o">}</span><span class="s1">'
+</span></code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
+  <span class="dl">"</span><span class="s2">id</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">646c58559bea92ec60f2bcf3</span><span class="dl">"</span>
+<span class="p">});</span>
+
+<span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">delete</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/notification</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span>
+    <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
+  <span class="p">},</span>
+  <span class="na">data</span> <span class="p">:</span> <span class="nx">data</span>
+<span class="p">};</span>
+
+<span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
+<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+<span class="p">})</span>
+<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div>
+
+<p>사용자가 선택한 알림을 삭제합니다.</p>
+
+<h3 id='http-request'>HTTP Request</h3>
+
+<p><code>DELETE /v1/notification</code></p>
+
+<h3 id='scopes'>Scopes</h3>
+
+<ul>
+<li><code>user:anonymous</code></li>
+</ul>
+
+<h3 id='response-code'>Response Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>204</td>
+<td>No Content</td>
+</tr>
+</tbody></table>
+
+<h3 id='error-code'>Error Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td><code>INVALID_NOTIFICATION_ID</code></td>
+<td>유효하지 않은 알림 ID</td>
+</tr>
+<tr>
+<td>401</td>
+<td><code>Unauthorized</code></td>
+<td>미 로그인 상태</td>
+</tr>
+<tr>
+<td>404</td>
+<td><code>NOTIFICATION_NOT_FOUND</code></td>
+<td>해당 알림이 존재하지 않음</td>
+</tr>
+</tbody></table>
