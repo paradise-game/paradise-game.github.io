@@ -1,0 +1,97 @@
+## Read notification
+
+> Request
+
+```http
+PATCH <%= config[:version] %>/notification/read
+Host: <%= config[:host] %>
+Authorization: Bearer {access_token}
+Content-Length: 40
+
+{
+    "id": "646c58559bea92ec60f2bcf3"
+}
+```
+
+```shell
+curl --location --request PATCH '<%= config[:base_url] %>/notification/read \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {access_token}' \
+--data '{
+    "id": "646c58559bea92ec60f2bcf3"
+}'
+```
+
+```javascript
+const axios = require('axios');
+let data = JSON.stringify({
+  "id": "646c58559bea92ec60f2bcf3"
+});
+
+let config = {
+  method: 'patch',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/notification/read',
+  headers: { 
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer {access_token}'
+  },
+  data : data
+};
+
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error);
+});
+```
+
+> Response
+
+```json
+[
+  {
+    "id": "646c5a2202377e97f20689b1",
+    "title": "Deposited GNI(Genie) 0.0000000000000012",
+    "body": "From 0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D",
+    "isRead": true,
+    "createdAt": "2023-05-23T06:16:02.453Z"
+  }
+]
+```
+
+사용자에게 발송된 푸시 알림의 읽음 여부를 변경합니다.
+
+### HTTP Request
+
+`PATCH <%= config[:version] %>/notification/read`
+
+### Scopes
+
+- `user:anonymous`
+
+### Response Code
+
+| Code | Description |
+| ---- | ----------- |
+| 200  | OK          |
+
+### Response Data
+
+| Parameter | Type     | Description |
+| --------- | -------- | ----------- |
+| id | `string` | 푸시 알림 ID |
+| title | `string` | 푸시 알림 제목 |
+| body | `string` | 푸시 알림 내용 |
+| isRead | `boolean` | 푸시 알림 읽음 여부 |
+| createdAt | `string` | 푸시 알림 생성 시간 |
+
+### Error Code
+
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 400 | `INVALID_NOTIFICATION_ID` | 유효하지 않은 알림 ID |
+| 401 | `Unauthorized` | 미 로그인 상태 |
+| 404 | `NOTIFICATION_NOT_FOUND` | 해당 알림이 존재하지 않음 |

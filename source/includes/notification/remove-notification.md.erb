@@ -1,0 +1,73 @@
+## Remove Notification
+
+> Request
+
+```http
+DELETE <%= config[:version] %>/notification
+Host: <%= config[:host] %>
+Authorization: Bearer {access_token}
+Content-Length: 40
+
+{
+    "id": "646c58559bea92ec60f2bcf3"
+}
+```
+
+```shell
+curl --location --request DELETE '<%= config[:base_url] %>/notification
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {access_token}' \
+--data '{
+    "id": "646c58559bea92ec60f2bcf3"
+}'
+```
+
+```javascript
+const axios = require('axios');
+let data = JSON.stringify({
+  "id": "646c58559bea92ec60f2bcf3"
+});
+
+let config = {
+  method: 'delete',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/notification',
+  headers: { 
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer {access_token}'
+  },
+  data : data
+};
+
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error);
+});
+```
+
+사용자가 선택한 알림을 삭제합니다.
+
+### HTTP Request
+
+`DELETE <%= config[:version] %>/notification`
+
+### Scopes
+
+- `user:anonymous`
+
+### Response Code
+
+| Code | Description |
+| ---- | ----------- |
+| 204  | No Content |
+
+### Error Code
+
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 400 | `INVALID_NOTIFICATION_ID` | 유효하지 않은 알림 ID |
+| 401 | `Unauthorized` | 미 로그인 상태 |
+| 404 | `NOTIFICATION_NOT_FOUND` | 해당 알림이 존재하지 않음 |
