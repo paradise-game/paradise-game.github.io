@@ -1,0 +1,114 @@
+## Verify Phone Change SMS Code & Update Phone Number
+
+> Request
+
+```http
+POST <%= config[:version] %>/user/verification/check HTTP/1.1
+Host: <%= config[:host] %>
+X-Verification-Code: 111111
+Content-Type: application/json
+Authorization: Bearer {access_token}
+Content-Length: 31
+
+{
+  "phone": "+821093814181"
+}
+```
+
+```shell
+curl --location --request POST '<%= config[:base_url] %>/user/verification/check' \
+--header 'X-Verification-Code: 111111'
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {access_token}' \
+--data '{
+  "phone": "+821093814181"
+}'
+
+```
+
+```javascript
+const axios = require('axios');
+let data = JSON.stringify({
+  "phone": "+821093814181"
+});
+
+let config = {
+  method: 'post',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/
+  headers: { 
+    'X-Verification-Code': '111111',
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer {access_token}'
+  },
+  data : data
+};
+
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error);
+});
+```
+
+> Response
+
+```json
+{
+  "success": true
+}
+```
+
+사용자의 전화번호 변경을 위해 받은 인증 코드를 검증합니다.
+
+검증에 성공할 경우, 기존 사용자의 전화번호는 `phone`으로 변경됩니다.
+
+### HTTP Request
+
+`POST <%= config[:version] %>/user/verification/check`
+
+### Scopes
+
+- `user:anonymous`
+
+### Request Header
+
+| Parameter        | Required | Description |
+| ---------------- | -------- | ----------- |
+| X-Verification-Code  | true | 인증 코드 |
+
+
+사용자가 발급 받은 <a href="#send-phone-change-sms-code">인증 코드</a>의 검증을 진행합니다.
+
+검증에 성공할 경우, 기존 사용자의 전화번호를 `phone`으로 변경합니다.
+
+### Request Body
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| phone | `string` | true | 인증코드를 전송한 전화번호 |
+
+### Response Code
+
+| Code | Description |
+| ---- | ----------- |
+| 200  | OK          |
+
+### Response Data
+
+| Parameter | Type     | Description |
+| --------- | -------- | ----------- |
+| success | `boolean` | 인증 코드 검증 결과 |
+
+
+### Error Code
+
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 400 | `SAME_PHONE_NUMBER` | 기존 전화번호와 동일한 전화번호 |
+| 400 | `INVALID_PHONE_NUMBER` | 유효하지 않은 전화번호 |
+| 400 | `INVALID_VERIFICATION_CODE` | 유효하지 않은 인증 코드 |
+| 401 | `Unauthorized` | 미 로그인 상태 |
+| 401 | `VERIFICATION_CODE_UNAVAILABLE_OR_EXPIRED` | 인증 코드가 존재하지 않거나 만료됨 |

@@ -1,0 +1,92 @@
+## Send Phone Change SMS Code
+
+> Request
+
+```http
+POST <%= config[:version] %>/user/verification/send HTTP/1.1
+Host: <%= config[:host] %>
+```
+
+```shell
+curl --location --request POST '<%= config[:base_url] %>/user/verification/send' \
+```
+
+```javascript
+const axios = require('axios');
+let data = JSON.stringify({
+  "phone": "+821093814181"
+});
+
+let config = {
+  method: 'post',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/user/verification/send',
+  headers: { 
+    'Content-Type': 'application/json', 
+    'Authorization': 'Bearer {access_token}'
+  },
+  data : data
+};
+
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error);
+});
+
+```
+
+> Response
+
+```json
+{
+    "from": "+12705161696",
+    "to": "+821093814181",
+    "body": null,
+    "ttl": 300000,
+    "createdAt": "2023-05-30T08:55:00.636Z"
+}
+```
+
+사용자의 전화번호 전송을 위한 인증코드를 전송합니다.
+
+### HTTP Request
+
+`POST <%= config[:version] %>/user/verification/send`
+
+### Scopes
+
+- `user:anonymous`
+
+### Request Body
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| phone | `string` | true | 인증코드를 전송할 전화번호 |
+
+### Response Code
+
+| Code | Description |
+| ---- | ----------- |
+| 200  | OK          |
+
+### Response Data
+
+| Parameter | Type     | Description |
+| --------- | -------- | ----------- |
+| from | `string` | 인증코드를 전송한 전화번호 |
+| to | `string` | 인증코드를 받은 전화번호 |
+| body | `string` | 인증코드 |
+| ttl | `number` | 인증 코드 유효 시간 (ms) |
+| createdAt | `string` | 인증 코드 생성 시간 |
+
+
+### Error Code
+
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 400 | `INVALID_PHONE_NUMBER` | 잘못된 휴대폰 번호 |
+| 401 | `Unauthorized` | 미 로그인 상태 |
+| 409 | `ALREADY_EXISTS_VERIFICATION` | 이미 인증 코드가 발급된 경우 |
