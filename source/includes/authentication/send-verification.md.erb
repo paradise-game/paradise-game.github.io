@@ -64,7 +64,7 @@ axios.request(config)
 
 | Parameter | Type | Required | Description |
 | --------- | ---- | -------- | ----------- |
-| phone | string | true | 인증코드를 전송할 전화번호 |
+| phone | `string` | true | 인증코드를 전송할 전화번호 |
 
 ### Response Code 
 
@@ -76,11 +76,11 @@ axios.request(config)
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
-| from | string | 인증코드를 전송한 전화번호 |
-| to | string | 인증코드를 받은 전화번호 |
-| body | string | 인증코드 |
-| ttl | number | 인증 코드 유효 시간 (ms) |
-| createdAt | string | 인증 코드 생성 시간 |
+| from | `string` | 인증코드를 전송한 전화번호 |
+| to | `string` | 인증코드를 받은 전화번호 |
+| body | `string` | 인증코드 |
+| ttl | `number` | 인증 코드 유효 시간 (ms) |
+| createdAt | `string` | 인증 코드 생성 시간 |
 
 ### Error Code
 
