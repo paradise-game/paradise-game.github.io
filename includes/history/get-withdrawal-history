@@ -19,12 +19,12 @@
 <span class="p">};</span>
 
 <span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="p">});</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
 </code></pre></div>
 <blockquote>
 <p>Response</p>
@@ -35,28 +35,10 @@
         </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:28:11.124Z"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:28:56.756Z"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:33:16.169Z"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T08:26:20.584Z"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<p>사용자의 전체 내부 출금 내역을 조회합니다.</p>
+<p>사용자의 전체 출금 내역을 조회합니다.</p>
 
 <aside class="notice">
 사용자 내부 출금 내역 조회는 <a href="#create-wallet">지갑 생성</a>을 진행한 사용자에 한해 사용 가능합니다.

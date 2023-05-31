@@ -59,7 +59,7 @@
   </span><span class="nl">"refreshToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmYxMTNjYTRiNTliMDc4NmVmMzhhZWQ0NjhjOGU5MzpmNGM3YjZkZGJiN2FkZCIsImlhdCI6MTY4MzE2ODA0MywiZXhwIjoxNjgzMTY5OTAzfQ.n_DGj7snsxQVGD6P9aIFJmRvhuIrjjNudZPWa11-MBU"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
-<p>로그인은 국가 전화번호를 포함한 전화번호와 비밀번호를 통해 진행됩니다.</p>
+<p>로그인은 국가 번호를 포함한 전화번호와 비밀번호를 통해 진행됩니다.</p>
 
 <p>로그인 성공 시 응답(Response)으로 계정 정보와 인증 토큰을 반환합니다. 계정(Account)은 GNI 소유량을 포함한 정보를 가지고 있습니다.</p>
 <h3 id='http-request'>HTTP Request</h3>
@@ -115,7 +115,7 @@
 </tr>
 </tbody></table>
 
-<p><code>authentication.role.type</code>은 <a href="#roles">권한 종류</a>를 참고하세요.</p>
+<p><code>authentication.role.type</code>은 <a href="#roles">Roles</a> 섹션을 참고하세요.</p>
 <h3 id='access-token'>Access Token</h3>
 <p>API 요청의 대부분은 인증 토큰(access_token)을 요구합니다.</p>
 

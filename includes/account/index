@@ -672,7 +672,7 @@ GNI 소유량(balance)은 소수 자릿수(18=wei)를 반환합니다. 예를 �
 </tr>
 </tbody></table>
 
-<h2 id='send-verification-code-withdrawal'>Send Verification Code(Withdrawal)</h2>
+<h2 id='send-verification-code-for-withdrawal'>Send verification code for Withdrawal</h2>
 
 <blockquote>
 <p>Request</p>

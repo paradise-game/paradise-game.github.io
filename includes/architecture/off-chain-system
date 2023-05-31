@@ -1,0 +1,17 @@
+<h2 id='off-chain-system'>Off-Chain System</h2>
+<p>트랜잭션 수수료와 느린 응답속도 등을 고려했을 때, 잦은 On-Chain 작업은 매우 비효율적입니다. 따라서, Off-Chain 시스템을 통해 On-Chain 작업을 최소화하고자 합니다. Off-Chain 시스템은 다음과 같은 역할을 수행합니다.</p>
+
+<ul>
+<li><p><strong>사용자 인증</strong>: 사용자의 개인키를 통해 사용자를 인증합니다.</p></li>
+<li><p><strong>사용자의 토큰 잔액 관리</strong>: 사용자의 토큰 잔액을 관리합니다.</p></li>
+<li><p><strong>사용자의 토큰 전송</strong>: 사용자의 토큰을 전송합니다.</p></li>
+<li><p><strong>사용자의 토큰 전송 내역 관리</strong>: 사용자의 토큰 전송 내역을 관리합니다.</p></li>
+<li><p><strong>사용자의 토큰 전송 내역 조회</strong>: 사용자의 토큰 전송 내역을 조회합니다.</p></li>
+</ul>
+<h3 id='version-1-0'>Version 1.0</h3>
+<p>현재 <code>v1</code>에서는 다음과 같은 Off-Chain 시스템을 제공합니다.</p>
+
+<ul>
+<li><a href="#create-wallet">어카운트 제공</a>: 블록체인 계정을 제공합니다.</li>
+<li><a href="#transfer">GNI 이체 서비스</a>: 어카운트 간 GNI를 전송 및 수신합니다.</li>
+</ul>
