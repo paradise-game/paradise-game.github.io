@@ -4,28 +4,24 @@
 </blockquote>
 <div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/v1/auth/verification/check</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">X-Verification-Code</span><span class="p">:</span> <span class="s">747115</span>
 <span class="na">Content-Type</span><span class="p">:</span> <span class="s">application/json</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
-<span class="na">Content-Length</span><span class="p">:</span> <span class="s">79</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">32</span>
 
 <span class="p">{</span><span class="w">
-    </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+821093814181"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"111111"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"countryCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KR"</span><span class="w">
+    </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"+821012341234"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/v1/auth/verification/check '</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'X-Verification-Code: 747115'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Content-Type: application/json'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span> <span class="se">\</span>
 <span class="nt">--data</span> <span class="s1">'{
-    "phone": "+821093814181",
-    "code": "111111",
-    "countryCode": "KR"
+    "phone": "+821093814181"
 }'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">({</span>
-  <span class="dl">"</span><span class="s2">phone</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">+821093814181</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">code</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">111111</span><span class="dl">"</span><span class="p">,</span>
-  <span class="dl">"</span><span class="s2">countryCode</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">KR</span><span class="dl">"</span>
+  <span class="dl">"</span><span class="s2">phone</span><span class="dl">"</span><span class="p">:</span> <span class="dl">"</span><span class="s2">+821093814181</span><span class="dl">"</span>
 <span class="p">});</span>
 
 <span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
@@ -33,6 +29,7 @@
   <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
   <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/auth/verification/check</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
+    <span class="dl">'</span><span class="s1">X-Verification-Code</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">747115</span><span class="dl">'</span><span class="p">,</span>
     <span class="dl">'</span><span class="s1">Content-Type</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">application/json</span><span class="dl">'</span><span class="p">,</span> 
     <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
   <span class="p">},</span>
@@ -48,17 +45,31 @@
   <span class="p">});</span>
 
 </code></pre></div>
-<p>사용자에게서 인증 코드를 받아 검증합니다.</p>
+<p>사용자에게서 인증 코드를 받아 검증해 사용자의 권한을 업데이트합니다.</p>
 
-<p>회원가입할 때 사용자가 전화번호를 잘못 입력한 경우, 해당 <code>phone</code> 값으로 인증 코드를 전송할 수 있으며, 이 때 <code>countryCode</code>를 함께 전송해야 합니다.</p>
+<p>회원가입했을 때 사용자가 전화번호를 잘못 입력한 경우, <code>phone</code> 에 새로운 전화번호를 입력해 인증 코드를 전송할 수 있습니다.</p>
 
-<p>인증이 완료되면 기존 <code>phone</code>과 <code>countryCode</code>는 새로 입력된 <code>phone</code>과 <code>countryCode</code>로 대체됩니다.</p>
+<p>인증에 성공할 경우, 회원가입할 때 입력했던 <code>phone</code>은 새로 입력된 <code>phone</code>으로 대체됩니다.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>POST /v1/auth/verification/check</code></p>
 <h3 id='scopes'>Scopes</h3>
 <ul>
 <li><code>user:anonymous</code></li>
 </ul>
+<h3 id='request-header'>Request Header</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-Verification-Code</td>
+<td>true</td>
+<td>인증 코드</td>
+</tr>
+</tbody></table>
 <h3 id='request-body'>Request Body</h3>
 <table><thead>
 <tr>
@@ -73,18 +84,6 @@
 <td>string</td>
 <td>true</td>
 <td>인증코드를 전송한 전화번호</td>
-</tr>
-<tr>
-<td>code</td>
-<td>string</td>
-<td>true</td>
-<td>사용자가 입력한 인증코드</td>
-</tr>
-<tr>
-<td>countryCode</td>
-<td>string</td>
-<td>true</td>
-<td>국가코드</td>
 </tr>
 </tbody></table>
 <h3 id='response-code'>Response Code</h3>
@@ -135,5 +134,10 @@
 <td>401</td>
 <td><code>VERIFICATION_CODE_UNAVAILABLE_OR_EXPIRED</code></td>
 <td>인증 코드가 존재하지 않거나 만료됨</td>
+</tr>
+<tr>
+<td>409</td>
+<td><code>ALREADY_EXISTS_VERIFICATION</code></td>
+<td>이미 인증 코드가 발급된 경우</td>
 </tr>
 </tbody></table>

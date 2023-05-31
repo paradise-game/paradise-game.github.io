@@ -130,13 +130,13 @@
 <td>이미 인증된 휴대폰 번호</td>
 </tr>
 <tr>
-<td>400</td>
-<td><code>ALREADY_EXISTS_VERIFICATION</code></td>
-<td>이미 인증 코드가 발급된 경우</td>
-</tr>
-<tr>
 <td>401</td>
 <td><code>Unauthorized</code></td>
 <td>미 로그인 상태</td>
+</tr>
+<tr>
+<td>409</td>
+<td><code>ALREADY_EXISTS_VERIFICATION</code></td>
+<td>이미 인증 코드가 발급된 경우</td>
 </tr>
 </tbody></table>
