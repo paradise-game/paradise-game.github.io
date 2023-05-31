@@ -60,7 +60,7 @@
 </thead><tbody>
 <tr>
 <td>phone</td>
-<td>string</td>
+<td><code>string</code></td>
 <td>true</td>
 <td>인증코드를 전송할 전화번호</td>
 </tr>
@@ -87,27 +87,27 @@
 </thead><tbody>
 <tr>
 <td>from</td>
-<td>string</td>
+<td><code>string</code></td>
 <td>인증코드를 전송한 전화번호</td>
 </tr>
 <tr>
 <td>to</td>
-<td>string</td>
+<td><code>string</code></td>
 <td>인증코드를 받은 전화번호</td>
 </tr>
 <tr>
 <td>body</td>
-<td>string</td>
+<td><code>string</code></td>
 <td>인증코드</td>
 </tr>
 <tr>
 <td>ttl</td>
-<td>number</td>
+<td><code>number</code></td>
 <td>인증 코드 유효 시간 (ms)</td>
 </tr>
 <tr>
 <td>createdAt</td>
-<td>string</td>
+<td><code>string</code></td>
 <td>인증 코드 생성 시간</td>
 </tr>
 </tbody></table>
