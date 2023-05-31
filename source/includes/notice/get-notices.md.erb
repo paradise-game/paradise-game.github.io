@@ -1,0 +1,106 @@
+## Get Notices
+
+> Request
+
+```http
+GET <%= config[:version] %>/notice/all HTTP/1.1
+Host: <%= config[:host] %>
+```
+
+```shell
+curl --location --request GET '<%= config[:base_url] %>/notice/all'
+```
+
+```javascript
+const axios = require('axios');
+
+let config = {
+  method: 'get',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/notice/all',
+  headers: { }
+};
+
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error);
+});
+```
+
+> Response
+
+```json
+[
+    {
+        "id": "6475b275b0fd22a8616431c2",
+        "title": "수정",
+        "body": "테스트",
+        "createdAt": "2023-05-30T08:23:16.937Z",
+        "updatedAt": "2023-05-30T12:24:45.963Z"
+    },
+    {
+        "id": "6475b304c0c54bad540da792",
+        "title": "11",
+        "body": "123",
+        "createdAt": "2023-05-30T08:25:40.018Z",
+        "updatedAt": "2023-05-30T08:25:40.018Z"
+    },
+    {
+        "id": "6475b317c0c54bad540da793",
+        "title": "tttest",
+        "body": "123",
+        "createdAt": "2023-05-30T08:25:59.094Z",
+        "updatedAt": "2023-05-30T08:25:59.094Z"
+    },
+    {
+        "id": "6475b33dcf8d5bc242d9c791",
+        "title": "any",
+        "body": "123",
+        "createdAt": "2023-05-30T08:26:37.499Z",
+        "updatedAt": "2023-05-30T08:26:37.499Z"
+    },
+    {
+        "id": "6475b385fbc570ca789abe45",
+        "title": "any",
+        "body": "123",
+        "createdAt": "2023-05-30T08:27:48.697Z",
+        "updatedAt": "2023-05-30T08:27:48.697Z"
+    },
+    {
+        "id": "64772285c1856c0eebb7d56f",
+        "title": "공지사항 제목",
+        "body": "공지사항 내용",
+        "createdAt": "2023-05-31T10:33:41.456Z",
+        "updatedAt": "2023-05-31T10:33:41.456Z"
+    }
+]
+```
+
+지금까지 작성된 전체 공지사항 목록을 가져옵니다.
+
+### HTTP Request
+
+`GET <%= config[:version] %>/notice/all`
+
+### Scopes
+
+- No permission required
+
+### Response Code
+
+| Code | Description |
+| ---- | ----------- |
+| 200  | OK          |
+
+### Response Data
+
+| Parameter | Type     | Description |
+| --------- | -------- | ----------- |
+| id        | `string` | 공지사항 ID |
+| title     | `string` | 공지사항 제목 |
+| body      | `string` | 공지사항 내용 |
+| createdAt | `string` | 공지사항 작성일 |
+| updatedAt | `string` | 공지사항 수정일 |
