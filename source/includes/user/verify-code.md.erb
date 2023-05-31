@@ -65,13 +65,17 @@ axios.request(config)
 
 검증에 성공할 경우, 기존 사용자의 전화번호는 `phone`으로 변경됩니다.
 
+<aside class="notice">
+사용자 전화번호 검증 및 변경은 <a href="#verify-code">사용자 전화번호 인증</a>을 진행한 사용자에 한해 가능합니다.
+</aside>
+
 ### HTTP Request
 
 `POST <%= config[:version] %>/user/verification/check`
 
 ### Scopes
 
-- `user:anonymous`
+- `user:verified`
 
 ### Request Header
 

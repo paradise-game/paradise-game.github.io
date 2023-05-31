@@ -50,7 +50,11 @@ axios.request(config)
 }
 ```
 
-사용자의 전화번호 전송을 위한 인증코드를 전송합니다.
+사용자의 전화번호 변경을 위한 인증코드를 전송합니다.
+
+<aside class="notice">
+사용자 전화번호 변경을 위한 인증코드 전송 로직은 <a href="#verify-code">사용자 전화번호 인증</a>을 진행한 사용자에 한해 가능합니다.
+</aside>
 
 ### HTTP Request
 
@@ -58,7 +62,7 @@ axios.request(config)
 
 ### Scopes
 
-- `user:anonymous`
+- `user:verified`
 
 ### Request Body
 
