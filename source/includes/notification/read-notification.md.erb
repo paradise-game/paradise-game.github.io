@@ -51,18 +51,14 @@ axios.request(config)
 > Response
 
 ```json
-[
-  {
-    "id": "646c5a2202377e97f20689b1",
-    "title": "Deposited GNI(Genie) 0.0000000000000012",
-    "body": "From 0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D",
-    "isRead": true,
-    "createdAt": "2023-05-23T06:16:02.453Z"
-  }
-]
+{
+  "success": true
+}
 ```
 
 사용자에게 발송된 푸시 알림의 읽음 여부를 변경합니다.
+
+읽음 여부 변경을 실행한 후, 그에 대한 성공 여부를 반환합니다.
 
 ### HTTP Request
 
@@ -82,11 +78,7 @@ axios.request(config)
 
 | Parameter | Type     | Description |
 | --------- | -------- | ----------- |
-| id | `string` | 푸시 알림 ID |
-| title | `string` | 푸시 알림 제목 |
-| body | `string` | 푸시 알림 내용 |
-| isRead | `boolean` | 푸시 알림 읽음 여부 |
-| createdAt | `string` | 푸시 알림 생성 시간 |
+| success   | `boolean` | 성공 여부 |
 
 ### Error Code
 
