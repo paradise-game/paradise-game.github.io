@@ -43,17 +43,13 @@ Content-Length: 40
 <blockquote>
 <p>Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"646c5a2202377e97f20689b1"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deposited GNI(Genie) 0.0000000000000012"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"body"</span><span class="p">:</span><span class="w"> </span><span class="s2">"From 0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"isRead"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-23T06:16:02.453Z"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <p>사용자에게 발송된 푸시 알림의 읽음 여부를 변경합니다.</p>
+
+<p>읽음 여부 변경을 실행한 후, 그에 대한 성공 여부를 반환합니다.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>PATCH /v1/notification/read</code></p>
 <h3 id='scopes'>Scopes</h3>
@@ -81,29 +77,9 @@ Content-Length: 40
 </tr>
 </thead><tbody>
 <tr>
-<td>id</td>
-<td><code>string</code></td>
-<td>푸시 알림 ID</td>
-</tr>
-<tr>
-<td>title</td>
-<td><code>string</code></td>
-<td>푸시 알림 제목</td>
-</tr>
-<tr>
-<td>body</td>
-<td><code>string</code></td>
-<td>푸시 알림 내용</td>
-</tr>
-<tr>
-<td>isRead</td>
+<td>success</td>
 <td><code>boolean</code></td>
-<td>푸시 알림 읽음 여부</td>
-</tr>
-<tr>
-<td>createdAt</td>
-<td><code>string</code></td>
-<td>푸시 알림 생성 시간</td>
+<td>성공 여부</td>
 </tr>
 </tbody></table>
 <h3 id='error-code'>Error Code</h3>

@@ -33,14 +33,16 @@ Content-Length: 40
 <span class="p">};</span>
 
 <span class="nx">axios</span><span class="p">.</span><span class="nx">request</span><span class="p">(</span><span class="nx">config</span><span class="p">)</span>
-<span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
-<span class="p">})</span>
-<span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
-<span class="p">});</span>
+  <span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">));</span>
+  <span class="p">})</span>
+  <span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+  <span class="p">});</span>
 </code></pre></div>
 <p>사용자가 선택한 알림을 삭제합니다.</p>
+
+<p>삭제를 실행한 후, 그에 대한 성공 여부를 반환합니다.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code>DELETE /v1/notification</code></p>
 <h3 id='scopes'>Scopes</h3>
@@ -55,8 +57,22 @@ Content-Length: 40
 </tr>
 </thead><tbody>
 <tr>
-<td>204</td>
-<td>No Content</td>
+<td>200</td>
+<td>OK</td>
+</tr>
+</tbody></table>
+<h3 id='response-data'>Response Data</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>success</td>
+<td><code>boolean</code></td>
+<td>성공 여부</td>
 </tr>
 </tbody></table>
 <h3 id='error-code'>Error Code</h3>
