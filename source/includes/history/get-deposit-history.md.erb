@@ -26,12 +26,12 @@ let config = {
 };
 
 axios.request(config)
-.then((response) => {
-  console.log(JSON.stringify(response.data));
-})
-.catch((error) => {
-  console.log(error);
-});
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 ```
 
 > Response
@@ -43,29 +43,11 @@ axios.request(config)
         "toAddress": "0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B",
         "amount": "10",
         "createdAt": "2023-05-12T07:28:11.124Z"
-    },
-    {
-        "fromAddress": "0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719",
-        "toAddress": "0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B",
-        "amount": "10",
-        "createdAt": "2023-05-12T07:28:56.756Z"
-    },
-    {
-        "fromAddress": "0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719",
-        "toAddress": "0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B",
-        "amount": "10",
-        "createdAt": "2023-05-12T07:33:16.169Z"
-    },
-    {
-        "fromAddress": "0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719",
-        "toAddress": "0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B",
-        "amount": "10",
-        "createdAt": "2023-05-12T08:26:20.584Z"
     }
 ]
 ```
 
-사용자의 전체 내부 입금 내역을 조회합니다.
+사용자의 전체 입금 내역을 조회합니다.
 
 <aside class="notice">
 사용자 내부 입금 내역 조회는 <a href="#create-wallet">지갑 생성</a>을 진행한 사용자에 한해 사용 가능합니다.

@@ -26,12 +26,12 @@ let config = {
 };
 
 axios.request(config)
-.then((response) => {
-  console.log(JSON.stringify(response.data));
-})
-.catch((error) => {
-  console.log(error);
-});
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
 ```
 
 > Response
@@ -44,34 +44,6 @@ axios.request(config)
     "body": "From 0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D",
     "isRead": true,
     "createdAt": "2023-05-23T06:16:02.453Z"
-  },
-  {
-    "id": "646c5a2702377e97f20689b2",
-    "title": "Deposited GNI(Genie) 0.000000000123502",
-    "body": "From 0xBB34C4a75E5f9ebe49215cB53dBB9bC6Aa59A68D",
-    "isRead": true,
-    "createdAt": "2023-05-23T06:16:07.339Z"
-  },
-  {
-    "id": "646d7d31266f24be299b04ee",
-    "title": "0.1 GNI(Genie) Withdrawal Succeed",
-    "body": "Txn Hash: 0x9fdc0870d85ba118ffc18015e5fdf411af6a240338b29301a266896e5c0f5e6e",
-    "isRead": true,
-    "createdAt": "2023-05-24T02:57:53.466Z"
-  },
-  {
-    "id": "646d8d39266f24be299b04ef",
-    "title": "0.1 GNI(Genie) Withdrawal Succeed",
-    "body": "Txn Hash: 0x3edb1b8049419dae366f266aafb95a173caccb29b82b381c0a254186a10f2003",
-    "isRead": true,
-    "createdAt": "2023-05-24T04:06:17.010Z"
-  },
-  {
-    "id": "646d8d45266f24be299b04f0",
-    "title": "0.1 GNI(Genie) Withdrawal Succeed",
-    "body": "Txn Hash: 0x5df29276392adb6a61f4b567961c7a6583871e329edb49b0de4f7028c90a86c1",
-    "isRead": true,
-    "createdAt": "2023-05-24T04:06:29.689Z"
   }
 ]
 ```
@@ -101,9 +73,3 @@ axios.request(config)
 | body | `string` | 푸시 알림 내용 |
 | isRead | `boolean` | 푸시 알림 읽음 여부 |
 | createdAt | `string` | 푸시 알림 발송 시간 |
-
-### Error Code
-
-| Code | Message | Description |
-| ---- | ------- | ----------- |
-| 401 | `Unauthorized` | 미 로그인 상태 |
