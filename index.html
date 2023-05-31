@@ -3393,34 +3393,34 @@ GNI 소유량(balance)은 소수 자릿수(18=wei)를 반환합니다. 예를 �
         </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:28:11.124Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:28:56.756Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:33:16.169Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T08:26:20.584Z"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 
-<p>사용자의 전체 출금 내역을 조회합니다.</p>
+<p>사용자의 전체 내부 출금 내역을 조회합니다.</p>
+
+<aside class="notice">
+사용자 내부 출금 내역 조회는 <a href="#create-wallet">지갑 생성</a>을 진행한 사용자에 한해 사용 가능합니다.
+</aside>
 
 <h3 id='http-request'>HTTP Request</h3>
 
@@ -3471,11 +3471,6 @@ GNI 소유량(balance)은 소수 자릿수(18=wei)를 반환합니다. 예를 �
 <td>입금 수량</td>
 </tr>
 <tr>
-<td>fee</td>
-<td><code>string</code></td>
-<td>입금 수수료</td>
-</tr>
-<tr>
 <td>createdAt</td>
 <td><code>string</code></td>
 <td>트랜잭션 발생 시간</td>
@@ -3522,34 +3517,34 @@ GNI 소유량(balance)은 소수 자릿수(18=wei)를 반환합니다. 예를 �
         </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:28:11.124Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:28:56.756Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:33:16.169Z"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
         </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"fee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
         </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T08:26:20.584Z"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 
-<p>사용자의 전체 입금 내역을 조회합니다.</p>
+<p>사용자의 전체 내부 입금 내역을 조회합니다.</p>
+
+<aside class="notice">
+사용자 내부 입금 내역 조회는 <a href="#create-wallet">지갑 생성</a>을 진행한 사용자에 한해 사용 가능합니다.
+</aside>
 
 <h3 id='http-request'>HTTP Request</h3>
 
@@ -3598,11 +3593,6 @@ GNI 소유량(balance)은 소수 자릿수(18=wei)를 반환합니다. 예를 �
 <td>amount</td>
 <td><code>string</code></td>
 <td>입금 수량</td>
-</tr>
-<tr>
-<td>fee</td>
-<td><code>string</code></td>
-<td>입금 수수료</td>
 </tr>
 <tr>
 <td>createdAt</td>
