@@ -1,0 +1,106 @@
+## Update Notice
+
+> Request
+
+```http
+PATCH <%= config[:version] %>/notice HTTP/1.1
+Host: <%= config[:host] %>
+Content-Type: application/json
+Authorization: Bearer {access_token}
+Content-Length: 78
+
+{
+  "id": "6475b275b0fd22a8616431c2",
+  "title": "수정",
+  "body": "테스트"
+}
+```
+
+```shell
+curl --location --request PATCH '<%= config[:base_url] %>/notice' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer {access_token}' \
+--data '{
+  "id": "6475b275b0fd22a8616431c2",
+  "title": "수정",
+  "body": "테스트"
+}
+```
+
+```javascript
+const axios = require('axios');
+let data = JSON.stringify({
+  "id": "6475b275b0fd22a8616431c2",
+  "title": "수정",
+  "body": "테스트"
+});
+
+let config = {
+  method: 'patch',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/notice',
+  headers: { 
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer {access_token}'
+  },
+  data : data
+};
+
+axios.request(config)
+.then((response) => {
+  console.log(JSON.stringify(response.data));
+})
+.catch((error) => {
+  console.log(error);
+});
+```
+
+> Response
+
+```json
+{
+  "success": true
+}
+```
+
+관리자 권한을 가진 사용자가 생성된 공지사항을 수정합니다.
+
+수정된 공지사항의 `updatedAt`은 공지가 수정된 시간으로 변경됩니다.
+
+### HTTP Request
+
+`PATCH <%= config[:version] %>/notice`
+
+### Scopes
+
+- `user:admin`
+
+### Request Body
+
+| Parameter | Type | Required | Description |
+| --------- | ---- | -------- | ----------- |
+| id        | `string` | `true` | 공지사항 ID |
+| title     | `string` | `false` | 공지사항 제목 |
+| body      | `string` | `false` | 공지사항 내용 |
+
+### Response Code
+
+| Code | Description |
+| ---- | ----------- |
+| 200  | OK          |
+
+### Response Data
+
+| Parameter | Type     | Description |
+| --------- | -------- | ----------- |
+| success   | `boolean` | 성공 여부    |
+
+
+### Error Code
+
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 400 | `INVALID_INPUT` | 유효하지 않은 입력 |
+| 401 | `Unauthorized` | 미 로그인 상태 |
+| 403 | `Forbidden` | 권한 없음 |
+| 404 | `NOTICE_NOT_FOUND` | 공지사항을 찾을 수 없음 |
