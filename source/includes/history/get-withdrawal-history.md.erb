@@ -19,7 +19,7 @@ const axios = require('axios');
 let config = {
   method: 'get',
   maxBodyLength: Infinity,
-  url: '<%= config[:base_url] %>/auth/withdrawal',
+  url: '<%= config[:base_url] %>/history/withdrawal',
   headers: { 
     'Authorization': 'Bearer {access_token}'
   }
@@ -47,7 +47,7 @@ axios.request(config)
 ]
 ```
 
-사용자의 전체 출금 내역을 조회합니다.
+사용자의 전체 내부 이체(출금) 내역을 최신 순서로 정렬해 조회합니다.
 
 <aside class="notice">
 사용자 내부 출금 내역 조회는 <a href="#create-wallet">지갑 생성</a>을 진행한 사용자에 한해 사용 가능합니다.

@@ -1,0 +1,79 @@
+## Get Withdrawal Transaction History
+
+> Request
+
+```http
+GET <%= config[:version] %>/transaction/withdrawals HTTP/1.1
+Host: <%= config[:host] %>
+Authorization: Bearer {access_token}
+```
+
+```shell
+curl --location '<%= config[:base_url] %>/transaction/withdrawals' \
+--header 'Authorization: Bearer {access_token}'
+```
+
+```javascript
+const axios = require('axios');
+
+let config = {
+  method: 'get',
+  maxBodyLength: Infinity,
+  url: '<%= config[:base_url] %>/transaction/withdrawals',
+  headers: { 
+    'Authorization': 'Bearer {access_token}'
+  }
+};
+
+axios.request(config)
+  .then((response) => {
+    console.log(JSON.stringify(response.data));
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+```
+
+> Response
+
+```json
+[
+    {
+        "fromAddress": "0x0d3dBC38a7E2450953B517177A872987ff27bf53",
+        "toAddress": "0x8ba88C4DB5c56E2c172be7800c35E40B82D6699b",
+        "amount": "1000000000000000000",
+        "createdAt": "2023-06-08T00:31:02.806Z",
+        "txHash": "0xf092ecd69dc9f74e7ef00255aa629f286c45a491b19ff193c15dc8f000faa273"
+    }
+]
+```
+
+사용자의 전체 외부 출금 내역을 최신 순서로 정렬해 조회합니다.
+
+<aside class="notice">
+사용자 외부 출금 내역 조회는 <a href="#create-wallet">지갑 생성</a>을 진행한 사용자에 한해 사용 가능합니다.
+</aside>
+
+### HTTP Request
+
+`GET <%= config[:version] %>/transaction/deposits`
+
+### Scopes
+
+- `user:account`
+
+### Response Code
+
+| Code | Description |
+| ---- | ----------- |
+| 200  | OK          |
+
+### Response Data
+
+| Parameter | Type     | Description |
+| --------- | -------- | ----------- |
+| fromAddress | `string` | GNI를 출금하는 주소 |
+| toAddress | `string` | GNI를 입금받는 주소 |
+| amount | `string` | 입금 수량 |
+| createdAt | `string` | 트랜잭션 발생 시간 |
+| txHash | `string` | 트랜잭션 해시 |
