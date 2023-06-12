@@ -3,7 +3,7 @@
 > Request
 
 ```http
-PATCH <%= config[:version] %>/notification/read
+PATCH <%= config[:version] %>/notification/read HTTP/1.1
 Host: <%= config[:host] %>
 Authorization: Bearer {access_token}
 Content-Length: 40

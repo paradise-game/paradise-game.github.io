@@ -1,15 +1,15 @@
-## Get Deposit History
+## Get Deposit Transaction History
 
 > Request
 
 ```http
-GET <%= config[:version] %>/history/deposit HTTP/1.1
+GET <%= config[:version] %>/transaction/deposits HTTP/1.1
 Host: <%= config[:host] %>
 Authorization: Bearer {access_token}
 ```
 
 ```shell
-curl --location '<%= config[:base_url] %>/history/deposit' \
+curl --location '<%= config[:base_url] %>/transaction/deposits' \
 --header 'Authorization: Bearer {access_token}'
 ```
 
@@ -19,7 +19,7 @@ const axios = require('axios');
 let config = {
   method: 'get',
   maxBodyLength: Infinity,
-  url: '<%= config[:base_url] %>/history/deposit',
+  url: '<%= config[:base_url] %>/transaction/deposits',
   headers: { 
     'Authorization': 'Bearer {access_token}'
   }
@@ -37,25 +37,18 @@ axios.request(config)
 > Response
 
 ```json
-[
-    {
-        "fromAddress": "0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719",
-        "toAddress": "0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B",
-        "amount": "10",
-        "createdAt": "2023-05-12T07:28:11.124Z"
-    }
-]
+[]
 ```
 
-사용자의 전체 내부 이체(입금) 내역을 최신 순서로 정렬해 조회합니다.
+사용자의 전체 외부 입금 내역을 최신 순서로 정렬해 조회합니다.
 
 <aside class="notice">
-사용자 내부 입금 내역 조회는 <a href="#create-wallet">지갑 생성</a>을 진행한 사용자에 한해 사용 가능합니다.
+사용자 외부 입금 내역 조회는 <a href="#create-wallet">지갑 생성</a>을 진행한 사용자에 한해 사용 가능합니다.
 </aside>
 
 ### HTTP Request
 
-`GET <%= config[:version] %>/history/deposit`
+`GET <%= config[:version] %>/transaction/deposits`
 
 ### Scopes
 
@@ -71,7 +64,13 @@ axios.request(config)
 
 | Parameter | Type     | Description |
 | --------- | -------- | ----------- |
-| fromAddress | `string` | 출금 주소 |
-| toAddress | `string` | 입금 주소 |
+| fromAddress | `string` | GNI를 출금하는 주소 |
+| toAddress | `string` | GNI를 입금받는 주소 |
 | amount | `string` | 입금 수량 |
 | createdAt | `string` | 트랜잭션 발생 시간 |
+| txHash | `string` | 트랜잭션 해시 |
+
+### Error Code
+| Code | Message | Description |
+| ---- | ------- | ----------- |
+| 403 | `Forbidden` | 사용자가 지갑을 생성하지 않음 |
