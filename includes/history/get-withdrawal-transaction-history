@@ -1,18 +1,18 @@
-<h2 id='get-deposit-history'>Get Deposit History</h2>
+<h2 id='get-withdrawal-transaction-history'>Get Withdrawal Transaction History</h2>
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/v1/history/deposit</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/v1/transaction/withdrawals</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/v1/history/deposit'</span> <span class="se">\</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/v1/transaction/withdrawals'</span> <span class="se">\</span>
 <span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span>
 </code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
   <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
-  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/history/deposit</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/transaction/withdrawals</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
     <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
   <span class="p">}</span>
@@ -31,20 +31,21 @@
 </blockquote>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
-        </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x21515DF0aAC1a266B944a4b13E5228Ea5FE45719"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xaFE2c5aD26d285Ff65f8E47D6a982e98C71EBf4B"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-05-12T07:28:11.124Z"</span><span class="w">
+        </span><span class="nl">"fromAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x0d3dBC38a7E2450953B517177A872987ff27bf53"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"toAddress"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0x8ba88C4DB5c56E2c172be7800c35E40B82D6699b"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000000000000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-06-08T00:31:02.806Z"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"txHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0xf092ecd69dc9f74e7ef00255aa629f286c45a491b19ff193c15dc8f000faa273"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
-<p>사용자의 전체 내부 이체(입금) 내역을 최신 순서로 정렬해 조회합니다.</p>
+<p>사용자의 전체 외부 출금 내역을 최신 순서로 정렬해 조회합니다.</p>
 
 <aside class="notice">
-사용자 내부 입금 내역 조회는 <a href="#create-wallet">지갑 생성</a>을 진행한 사용자에 한해 사용 가능합니다.
+사용자 외부 출금 내역 조회는 <a href="#create-wallet">지갑 생성</a>을 진행한 사용자에 한해 사용 가능합니다.
 </aside>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET /v1/history/deposit</code></p>
+<p><code>GET /v1/transaction/deposits</code></p>
 <h3 id='scopes'>Scopes</h3>
 <ul>
 <li><code>user:account</code></li>
@@ -72,12 +73,12 @@
 <tr>
 <td>fromAddress</td>
 <td><code>string</code></td>
-<td>출금 주소</td>
+<td>GNI를 출금하는 주소</td>
 </tr>
 <tr>
 <td>toAddress</td>
 <td><code>string</code></td>
-<td>입금 주소</td>
+<td>GNI를 입금받는 주소</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -88,5 +89,24 @@
 <td>createdAt</td>
 <td><code>string</code></td>
 <td>트랜잭션 발생 시간</td>
+</tr>
+<tr>
+<td>txHash</td>
+<td><code>string</code></td>
+<td>트랜잭션 해시</td>
+</tr>
+</tbody></table>
+<h3 id='error-code'>Error Code</h3>
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Message</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>403</td>
+<td><code>Forbidden</code></td>
+<td>사용자가 지갑을 생성하지 않음</td>
 </tr>
 </tbody></table>

@@ -5,10 +5,10 @@
 <p>Request</p>
 </blockquote>
 
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">POST /v1/notification
-Host: api.paradise.game
-Authorization: Bearer {access_token}
-</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://api.paradise.game/v1/notification \
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">POST</span> <span class="nn">/v1/notification</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> POST <span class="s1">'https://api.paradise.game/v1/notification \
 --header '</span>Authorization: Bearer <span class="o">{</span>access_token<span class="o">}</span><span class="s1">' \
 </span></code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
@@ -45,7 +45,7 @@ Authorization: Bearer {access_token}
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 
-<p>사용자에게 발송된 푸시 알림 목록을 반환합니다.</p>
+<p>사용자에게 발송된 푸시 알림 목록을 최근에 생성된 목록부터 정렬된 상태로 가져옵니다.</p>
 
 <h3 id='http-request'>HTTP Request</h3>
 
@@ -113,15 +113,15 @@ Authorization: Bearer {access_token}
 <p>Request</p>
 </blockquote>
 
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">PATCH /v1/notification/read
-Host: api.paradise.game
-Authorization: Bearer {access_token}
-Content-Length: 40
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">/v1/notification/read</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">40</span>
 
 {
     "id": "646c58559bea92ec60f2bcf3"
 }
-</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PATCH <span class="s1">'https://api.paradise.game/v1/notification/read \
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PATCH <span class="s1">'https://api.paradise.game/v1/notification/read \
 --header '</span>Content-Type: application/json<span class="s1">' \
 --header '</span>Authorization: Bearer <span class="o">{</span>access_token<span class="o">}</span><span class="s1">' \
 --data '</span><span class="o">{</span>
@@ -237,10 +237,10 @@ Content-Length: 40
 <p>Request</p>
 </blockquote>
 
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">PATCH /v1/notification/read/all
-Host: api.paradise.game
-Authorization: Bearer {access_token}
-</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PATCH <span class="s1">'https://api.paradise.game/v1/notification/read/all \
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">/v1/notification/read/all</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PATCH <span class="s1">'https://api.paradise.game/v1/notification/read/all \
 --header '</span>Authorization: Bearer <span class="o">{</span>access_token<span class="o">}</span><span class="s1">' \
 </span></code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
@@ -337,15 +337,15 @@ Authorization: Bearer {access_token}
 <p>Request</p>
 </blockquote>
 
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">DELETE /v1/notification
-Host: api.paradise.game
-Authorization: Bearer {access_token}
-Content-Length: 40
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">DELETE</span> <span class="nn">/v1/notification</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">40</span>
 
 {
     "id": "646c58559bea92ec60f2bcf3"
 }
-</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> DELETE <span class="s1">'https://api.paradise.game/v1/notification
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> DELETE <span class="s1">'https://api.paradise.game/v1/notification
 --header '</span>Content-Type: application/json<span class="s1">' \
 --header '</span>Authorization: Bearer <span class="o">{</span>access_token<span class="o">}</span><span class="s1">' \
 --data '</span><span class="o">{</span>

@@ -1,18 +1,18 @@
-<h2 id='read-all-notifications'>Read All Notifications</h2>
+<h2 id='get-deposit-transaction-history'>Get Deposit Transaction History</h2>
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">/v1/notification/read/all</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">GET</span> <span class="nn">/v1/transaction/deposits</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
 <span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PATCH <span class="s1">'https://api.paradise.game/v1/notification/read/all \
---header '</span>Authorization: Bearer <span class="o">{</span>access_token<span class="o">}</span><span class="s1">' \
-</span></code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="s1">'https://api.paradise.game/v1/transaction/deposits'</span> <span class="se">\</span>
+<span class="nt">--header</span> <span class="s1">'Authorization: Bearer {access_token}'</span>
+</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">axios</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">axios</span><span class="dl">'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">config</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">patch</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">method</span><span class="p">:</span> <span class="dl">'</span><span class="s1">get</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">maxBodyLength</span><span class="p">:</span> <span class="kc">Infinity</span><span class="p">,</span>
-  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/notification/read/all</span><span class="dl">'</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="dl">'</span><span class="s1">https://api.paradise.game/v1/transaction/deposits</span><span class="dl">'</span><span class="p">,</span>
   <span class="na">headers</span><span class="p">:</span> <span class="p">{</span> 
     <span class="dl">'</span><span class="s1">Authorization</span><span class="dl">'</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Bearer {access_token}</span><span class="dl">'</span>
   <span class="p">}</span>
@@ -29,18 +29,18 @@
 <blockquote>
 <p>Response</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[]</span><span class="w">
 </span></code></pre></div>
-<p>사용자에게 발송된 전체 푸시 알림의 읽음 여부를 변경합니다.</p>
+<p>사용자의 전체 외부 입금 내역을 최신 순서로 정렬해 조회합니다.</p>
 
-<p>읽음 여부 변경을 실행한 후, 그에 대한 성공 여부를 반환합니다.</p>
+<aside class="notice">
+사용자 외부 입금 내역 조회는 <a href="#create-wallet">지갑 생성</a>을 진행한 사용자에 한해 사용 가능합니다.
+</aside>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>PATCH /v1/notification/read/all</code></p>
+<p><code>GET /v1/transaction/deposits</code></p>
 <h3 id='scopes'>Scopes</h3>
 <ul>
-<li><code>user:anonymous</code></li>
+<li><code>user:account</code></li>
 </ul>
 <h3 id='response-code'>Response Code</h3>
 <table><thead>
@@ -63,9 +63,29 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>success</td>
-<td><code>boolean</code></td>
-<td>성공 여부</td>
+<td>fromAddress</td>
+<td><code>string</code></td>
+<td>GNI를 출금하는 주소</td>
+</tr>
+<tr>
+<td>toAddress</td>
+<td><code>string</code></td>
+<td>GNI를 입금받는 주소</td>
+</tr>
+<tr>
+<td>amount</td>
+<td><code>string</code></td>
+<td>입금 수량</td>
+</tr>
+<tr>
+<td>createdAt</td>
+<td><code>string</code></td>
+<td>트랜잭션 발생 시간</td>
+</tr>
+<tr>
+<td>txHash</td>
+<td><code>string</code></td>
+<td>트랜잭션 해시</td>
 </tr>
 </tbody></table>
 <h3 id='error-code'>Error Code</h3>
@@ -77,8 +97,8 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>401</td>
-<td><code>Unauthorized</code></td>
-<td>미 로그인 상태</td>
+<td>403</td>
+<td><code>Forbidden</code></td>
+<td>사용자가 지갑을 생성하지 않음</td>
 </tr>
 </tbody></table>

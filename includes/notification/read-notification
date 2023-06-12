@@ -2,15 +2,15 @@
 <blockquote>
 <p>Request</p>
 </blockquote>
-<div class="highlight"><pre class="highlight http tab-http"><code><span class="err">PATCH /v1/notification/read
-Host: api.paradise.game
-Authorization: Bearer {access_token}
-Content-Length: 40
+<div class="highlight"><pre class="highlight http tab-http"><code><span class="nf">PATCH</span> <span class="nn">/v1/notification/read</span> <span class="k">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="p">:</span> <span class="s">api.paradise.game</span>
+<span class="na">Authorization</span><span class="p">:</span> <span class="s">Bearer {access_token}</span>
+<span class="na">Content-Length</span><span class="p">:</span> <span class="s">40</span>
 
 {
     "id": "646c58559bea92ec60f2bcf3"
 }
-</span></code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PATCH <span class="s1">'https://api.paradise.game/v1/notification/read \
+</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">--location</span> <span class="nt">--request</span> PATCH <span class="s1">'https://api.paradise.game/v1/notification/read \
 --header '</span>Content-Type: application/json<span class="s1">' \
 --header '</span>Authorization: Bearer <span class="o">{</span>access_token<span class="o">}</span><span class="s1">' \
 --data '</span><span class="o">{</span>
